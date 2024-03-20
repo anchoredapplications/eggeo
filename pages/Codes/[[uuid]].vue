@@ -2,7 +2,7 @@
 <div class="flex flex-wrap gap-8 items-center justify-center">
     <div v-for="egg in eggs" :key="egg.uuid" class="w-1/3 flex flex-col items-center justify-center gap-8">
         <h1>{{ egg.uuid }}</h1>
-        <qrcode-vue :value="getEggUrl(eggs.uuid)" :level="level" :render-as="renderAs" />
+        <qrcode-vue :value="getEggUrl(egg.uuid)" :level="level" :render-as="renderAs" />
     </div>
 </div>
 </template>
