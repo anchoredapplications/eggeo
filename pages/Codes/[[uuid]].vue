@@ -11,7 +11,8 @@
 import { ref } from 'vue';
 import eggs from '~/eggs.json'; // Import the eggs.json file
 import config from '~/config.json'
-import QrcodeVue, { Level, RenderAs } from 'qrcode.vue'
+import QrcodeVue from 'qrcode.vue'
+import type { Level, RenderAs } from 'qrcode.vue'
   
 const level = ref<Level>('M')
 const renderAs = ref<RenderAs>('svg')
