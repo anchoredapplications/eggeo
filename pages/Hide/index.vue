@@ -1,5 +1,3 @@
 <template>
-    <ClientOnly>
-        <HideForm />
-    </ClientOnly>
+    <HideForm />
 </template>

@@ -21,13 +21,14 @@
     const isDisabled = ref(false)
     const setError = (e) => { error.text = e };
 
-    
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-            coords.lat = position.coords.latitude
-            coords.lng = position.coords.longitude
-        });
-    }
+    onMounted(() => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                coords.lat = position.coords.latitude
+                coords.lng = position.coords.longitude
+            });
+        }
+    })
     
     const handleSubmit = async () => {
         isDisabled.value = true
