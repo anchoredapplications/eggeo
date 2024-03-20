@@ -1,19 +1,19 @@
-<script setup>
-defineProps({
-  title: String,
-  image: String,
-  description: String
+<script setup lang="ts">
+import { Egg as EggType } from '~/types/global.d.ts'
+
+const props = defineProps({
+  egg: EggType
 });
 </script>
 
 <template>
   <div class="flex flex-col items-center justify-center border shadow-xl p-4 m-4 md:max-w-md text-center">
-    <h2 class="text-lg font-semibold">{{ title }}</h2>
+    <h2 class="text-lg font-semibold">{{ egg.title }}</h2>
     <span class="w-1/3">
-      <img v-if="image" :src="image" :alt="title" class="w-full h-auto my-2" />
-      <EggImage v-else/>
+      <img v-if="egg.image" :src="egg.image" :alt="egg.title" class="w-full h-auto my-2" />
+      <EggImage :id="egg.id" v-else :color="egg.color"/>
     </span>
-    <p>{{ description }}</p>
+    <p>{{ egg.description }}</p>
   </div>
 </template>
 

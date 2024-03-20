@@ -7,5 +7,11 @@ export default defineNuxtConfig({
       tailwindcss: {},
       autoprefixer: {},
     },
-  }
+  },
+  runtimeConfig: {
+    public: {
+      url: '',
+      mapsApiKey: ''
+    }
+  },
 })

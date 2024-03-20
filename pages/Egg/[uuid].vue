@@ -1,5 +1,8 @@
 <script setup>
-import eggsData from '~/eggs.json';
+const eggs = ref([]);
+
+const { data } = await useFetch('/api/getEggs')
+eggs.value = data.value
 
 const route = useRoute();
 const eggId = route.params.uuid;

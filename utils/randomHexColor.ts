@@ -1,9 +1,13 @@
 // Function to generate a random hex color
-export function randomHexColor() {
-  // Generate three random numbers between 0 and 255
-  const r = 100 + Math.floor(Math.random() * 156);
-  const g = 100 + Math.floor(Math.random() * 156);
-  const b = 100 + Math.floor(Math.random() * 156);
+export function randomColor() {
+  return 100 + Math.floor(Math.random() * 156);
+}
+
+// Function to generate a random hex color
+export function randomHexColor(seed?: string) {
+  const r = randomColor();
+  const g = randomColor();
+  const b = randomColor();
 
   // Convert the RGB values to hexadecimal and concatenate them
   const hexColor = "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
@@ -12,7 +16,7 @@ export function randomHexColor() {
 }
 
 // Helper function to convert a number to hexadecimal
-function componentToHex(c) {
+function componentToHex(c: number) {
   const hex = c.toString(16);
   return hex.length === 1 ? "0" + hex : hex;
 }

@@ -1,0 +1,25 @@
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  directUrl         = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Egg {
+  id            String  @id @default(uuid())
+  coords        Location?
+  description   String?
+  title         String?
+  username      String?
+  color         String?
+}
+
+model Location {
+  eggId     String  @id 
+  egg       Egg @relation(fields: [eggId], references: [id])
+  lat       Decimal 
+  lng       Decimal 
+}
