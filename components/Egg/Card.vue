@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import { Egg as EggType } from '~/types/global.d.ts'
+const props = defineProps(["egg"]);
 
-const props = defineProps({
-  egg: EggType
-});
 </script>
 
 <template>
