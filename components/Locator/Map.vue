@@ -27,7 +27,7 @@ onMounted(() => {
         <Marker :options="{ position: center }" />
         <CustomMarker v-for="egg in eggs" :key="egg.id" :options="{ position: {lat: parseFloat(egg.coords.lat), lng: parseFloat(egg.coords.lng)}, anchorPoint: 'CENTER' }" >
             <span>
-                <EggImage class="w-6 h-6"/>
+                <EggImage :color="egg.color" class="w-6 h-6"/>
             </span>
         </CustomMarker>
     </GoogleMap>
