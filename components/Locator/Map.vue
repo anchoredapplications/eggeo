@@ -12,13 +12,14 @@ onMounted(() => {
       center.value = coords;
       const [response, error] = await $getEggs({ coords: coords });
       if (response && !error) eggs.value = response.data.value;
+      console.log(eggs.value);
     });
   }
 });
 </script>
 
 <template>
-  <GoogleMap class="h-full w-full" :apiKey="config.public.mapsApiKey" :center="center" :zoom="17">
+  <GoogleMap v-if="eggs.length" class="h-full w-full" :apiKey="config.public.mapsApiKey" :center="center" :zoom="17">
     <Marker :options="{ position: center }" />
     <CustomMarker
       v-for="egg in eggs"
@@ -28,8 +29,8 @@ onMounted(() => {
         anchorPoint: 'CENTER',
       }"
     >
-      <span>
-        <EggImage :color="egg.color" class="w-6 h-6" />
+      <span :key="egg.id" class="flex items-center justify-center flex-col">
+        <EggImage :color="egg.color" :dimensions="{ width: 25 }" />
       </span>
     </CustomMarker>
   </GoogleMap>
