@@ -12,6 +12,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     googleClientSecret: '',
     googleClientId: '',
+    authSecret: '',
     public: {
       url: '',
       mapsApiKey: '',
