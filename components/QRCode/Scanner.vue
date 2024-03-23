@@ -1,19 +1,17 @@
 <script setup lang="ts">
+import isUUID from 'validator/lib/isUUID';
 import { QrcodeStream } from 'vue-qrcode-reader';
-const config = useRuntimeConfig()
+const emit = defineEmits(['onDetect']);
 
 const onDetect = (value: Array<any>) => {
-    const url = value?.[0]?.rawValue
-    const navUrl = url.split(config.public.url)
-    if (navUrl.length >= 2) {
-        useRouter().push(navUrl[navUrl.length - 1])
-    }
-}
+  const uuid = value?.[0]?.rawValue;
+  if (isUUID(uuid)) emit('onDetect', uuid);
+};
 </script>
 
 <template>
-    <div class="max-h-screen flex align-center justify-center">
-        <QrcodeStream @detect="onDetect" class="w-full max-w-screen-sm aspect-square shadow-xl border-2 border-black"/>
-        <QRCodeOutline class="absolute w-full max-w-screen-sm aspect-square"/>
-    </div>
+  <div class="w-full h-auto relative flex items-center justify-center">
+    <QrcodeStream @detect="onDetect" class="w-full max-w-screen-sm aspect-square shadow-xl border-2 border-black" />
+    <QRCodeOutline class="absolute top-0 w-full max-w-screen-sm aspect-square" />
+  </div>
 </template>

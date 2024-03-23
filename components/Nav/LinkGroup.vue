@@ -1,13 +1,16 @@
 <script setup>
-  const baseStyle = "text-sm text-center border-t border-slate-500 py-4 px-8 md:border-none"
+import { NAVIAGTION_OPTIONS } from '~/globals/NavigationOptions.ts';
+import { randomTailwindTextColor } from '~/composables/util/randomTailwindTextColor.ts';
+const { signOut } = await useAuth();
+const handleSignOut = async () => await signOut();
 </script>
 <template>
-    <div class="flex flex-col md:flex-row">
-      <div :class="['hover:text-cyan-600',baseStyle]">
-        <NuxtLink to="/scanner" >Scanner</NuxtLink>
-      </div>
-      <div :class="['hover:text-pink-600',baseStyle]">
-        <NuxtLink to="/locator">Map</NuxtLink>
-      </div>
-    </div>
+  <div class="flex flex-col md:flex-row">
+    <NavLink v-for="option of NAVIAGTION_OPTIONS" :style="`hover:${randomTailwindTextColor()}`">
+      <NuxtLink :to="option.route">{{ option.label }}</NuxtLink>
+    </NavLink>
+    <NavLink :style="'hover:text-orange-600'">
+      <button @click="handleSignOut">Sign Out</button>
+    </NavLink>
+  </div>
 </template>

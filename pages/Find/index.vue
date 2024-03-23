@@ -1,3 +1,3 @@
 <template>
-  <ViewLocator />
+  <ViewFind />
 </template>

@@ -1,7 +1,7 @@
 datasource db {
-  provider          = "postgresql"
-  url               = env("DATABASE_URL")
-  directUrl         = env("DIRECT_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 generator client {
@@ -9,17 +9,34 @@ generator client {
 }
 
 model Egg {
-  id            String  @id @default(uuid())
-  coords        Location?
-  description   String?
-  title         String?
-  username      String?
-  color         String?
+  id          String    @id @default(uuid())
+  coords      Location?
+  description String?
+  title       String?
+  color       String?
+  username    String?
+  hiddenBy    User?     @relation(fields: [username], references: [username])
+  foundBy     UserEgg[]
+}
+
+model UserEgg {
+  username String
+  eggId    String
+  Egg      Egg    @relation(fields: [eggId], references: [id])
+  User     User   @relation(fields: [username], references: [username])
+
+  @@id(name: "id", [username, eggId])
+}
+
+model User {
+  username   String    @id @default(uuid())
+  foundEggs  UserEgg[]
+  hiddenEggs Egg[]
 }
 
 model Location {
-  eggId     String  @id 
-  egg       Egg @relation(fields: [eggId], references: [id])
-  lat       Decimal 
-  lng       Decimal 
+  eggId String  @id
+  egg   Egg     @relation(fields: [eggId], references: [id])
+  lat   Decimal
+  lng   Decimal
 }

@@ -1,3 +1,3 @@
 <template>
-  <QRCodeScanner />
+  <ViewCodes />
 </template>

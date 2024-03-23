@@ -1,3 +1,3 @@
 <template>
-    <HideForm />
+  <ViewHide />
 </template>

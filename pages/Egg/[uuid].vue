@@ -1,10 +1,8 @@
 <script setup>
-  const route = useRoute();
-  const egg = ref(null);
-  const { data } = await useFetch(`/api/getEggs?uuid=${route.params.uuid}`, { method: "post"})
-  egg.value = data.value
+const route = useRoute();
+const uuid = route.params.uuid;
 </script>
 
 <template>
-  <EggCard v-if="egg" :egg="egg" />
+  <ViewEgg :uuid="uuid" />
 </template>
