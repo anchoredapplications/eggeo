@@ -1,8 +1,9 @@
 <script setup>
-const eggs = ref([]);
+import { useGetEggs } from '~/composables/gateway/egg';
 
-const { data } = await useFetch('/api/getEggs');
-eggs.value = data.value;
+const eggs = ref([]);
+const [response, error] = await useGetEggs();
+eggs.value = response.data.value;
 </script>
 
 <template>

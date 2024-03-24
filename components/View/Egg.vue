@@ -1,8 +1,10 @@
 <script setup>
+import { useGetEggs } from '~/composables/gateway/egg';
+
 const props = defineProps(['uuid']);
-const egg = ref(null);
-const { data } = await useFetch(`/api/getEggs?uuid=${props.uuid}`, { method: 'post' });
-egg.value = data.value;
+const eggs = ref([]);
+const [response, error] = await useGetEggs({ id: props.uuid });
+eggs.value = response.data.value;
 </script>
 
 <template>

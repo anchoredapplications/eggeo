@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { $hideEgg } from '~/composables/gateway/egg';
-const props = defineProps(['uuid', 'show']);
+const props = defineProps<{
+  uuid?: string;
+  hide?: () => void;
+}>();
 const wasHidden = ref<boolean>(false);
 const refError = ref<string>();
-
-const hide = () => {
-  props.show(false);
-};
 
 onMounted(async () => {
   navigator?.geolocation.getCurrentPosition(async (position) => {
@@ -26,8 +25,7 @@ onMounted(async () => {
 });
 </script>
 <template>
-  <vModal>
-    <button @click="hide" class="absolute top-1 right-1 z-50">Close</button>
+  <vModal @close="hide">
     <vSubtitle v-if="wasHidden">Egg Hidden!</vSubtitle>
     <vSubtitle v-else>Hidding egg...!</vSubtitle>
     <EggImage id="hidepopup" :dimensions="{ width: 200 }" />

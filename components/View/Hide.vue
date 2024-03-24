@@ -1,12 +1,13 @@
 <script setup lang="ts">
 const uuid = ref<string>();
-const showPopUp = ref<boolean>();
+const isShown = ref<boolean>();
 const onDetect = (val: string) => {
   uuid.value = val;
-  showPopUp.value = true;
+  isShown.value = true;
 };
-const show = (visible: bool) => {
-  showPopUp.value = visible;
+const hide = () => {
+  uuid.value = undefined;
+  isShown.value = false;
 };
 </script>
 
@@ -14,6 +15,6 @@ const show = (visible: bool) => {
   <main class="h-screen w-full py-16">
     <vTitle>Hide</vTitle>
     <QRCodeScanner @onDetect="onDetect" />
-    <HidePopUp v-if="showPopUp" :uuid="uuid" :show="show" />
+    <HidePopUp v-if="isShown" :uuid="uuid" :hide="hide" />
   </main>
 </template>

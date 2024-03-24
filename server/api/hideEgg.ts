@@ -1,12 +1,12 @@
 import { PrismaClient } from '@prisma/client';
-import requireAuth from './requireAuth';
+import { requireAuth } from './requireAuth';
 const prisma = new PrismaClient();
 
 export default defineEventHandler(
   requireAuth(async (event) => {
     const { coords, id, username } = await readBody(event);
 
-    await prisma.location.upsert({
+    const newLocation = await prisma.location.upsert({
       where: {
         eggId: id,
       },
@@ -20,7 +20,7 @@ export default defineEventHandler(
       },
     });
 
-    await prisma.egg.update({
+    const currentEgg = await prisma.egg.update({
       where: {
         id: id,
       },
@@ -29,6 +29,6 @@ export default defineEventHandler(
       },
     });
 
-    return true;
+    return newLocation;
   }),
 );

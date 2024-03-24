@@ -1,26 +1,33 @@
 <script setup lang="ts">
 import { GoogleMap, Marker, CustomMarker } from 'vue3-google-map';
 import { $getEggs } from '~/composables/gateway/egg';
-const eggs = ref([]);
-const config = useRuntimeConfig();
-const center = ref({ lat: 1, lng: 1 });
+import { useGeolocation } from '@vueuse/core';
 
-onMounted(() => {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(async (position) => {
-      const coords = { lat: position.coords.latitude, lng: position.coords.longitude };
-      center.value = coords;
-      const [response, error] = await $getEggs({ coords: coords });
-      if (response && !error) eggs.value = response.data.value;
-      console.log(eggs.value);
-    });
+const { coords, locatedAt, resume, pause } = useGeolocation();
+const location = (c) => ({ lat: c.latitude, lng: c.longitude });
+const eggs = ref();
+const config = useRuntimeConfig();
+const center = ref();
+
+watch(locatedAt, async (newVal, oldVal) => {
+  if (oldVal === null || oldVal === undefined) {
+    const [response, error] = await $getEggs({ coords: location(coords) });
+    if (response && !error) {
+      eggs.value = response.data.value;
+    }
+  } else {
+    center.value = location(coords);
   }
 });
 </script>
 
 <template>
-  <GoogleMap v-if="eggs.length" class="h-full w-full" :apiKey="config.public.mapsApiKey" :center="center" :zoom="17">
-    <Marker :options="{ position: center }" />
+  <GoogleMap class="h-full w-full" :apiKey="config.public.mapsApiKey" :center="location(coords)" :zoom="17">
+    <CustomMarker key="current-user" :options="{ position: location(coords), anchorPoint: 'CENTER' }">
+      <span key="current-user-marker" class="flex items-center justify-center flex-col">
+        <vUser :dimensions="{ width: 25 }" />
+      </span>
+    </CustomMarker>
     <CustomMarker
       v-for="egg in eggs"
       :key="egg.id"

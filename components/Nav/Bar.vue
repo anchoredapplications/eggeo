@@ -34,30 +34,10 @@ const signedIn = status.value === 'authenticated';
           <NavLink v-if="!signedIn" :style="'hover:text-cyan-600 border-none'">
             <button @click="handleSignIn">Sign In</button>
           </NavLink>
-          <button v-else @click="isOpen = !isOpen" :class="buttonClasses" aria-expanded="false">
+          <button v-else @click.native="isOpen = !isOpen" :class="buttonClasses" aria-expanded="false">
             <span class="sr-only">Open main menu</span>
-            <svg
-              class="h-6 w-6"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-              v-if="!isOpen"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-            </svg>
-            <svg
-              class="h-6 w-6"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-              v-else
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
+            <vHamburger v-if="!isOpen" />
+            <vClose v-else />
           </button>
         </div>
       </div>

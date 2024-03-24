@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { $findEgg } from '~/composables/gateway/egg';
-const { getSession } = useAuth();
-const { user } = await getSession();
-
-const props = defineProps(['uuid']);
-
-const wasFound = ref<boolean>(false);
+const props = defineProps<{
+  uuid?: string;
+  hide?: () => void;
+}>();
+const wasHidden = ref<boolean>(false);
 const refError = ref<string>();
 
 onMounted(async () => {
@@ -17,10 +16,15 @@ onMounted(async () => {
   }
 });
 </script>
+
 <template>
-  <main class="absolute bg-white h-screen w-screen shadow-xl m-4">
-    <h1 v-if="wasFound">Egg Found!</h1>
-    <h1 v-else>Finding egg...!</h1>
-    <EggImage id="popup" />
-  </main>
+  <vModal @close="hide">
+    <vSubtitle v-if="wasHidden">Egg found!</vSubtitle>
+    <vSubtitle v-else>Finding egg...</vSubtitle>
+    <EggImage id="findpopup" :dimensions="{ width: 200, height: 200 }" />
+    <span class="w-full flex justify-around pt-2">
+      <vButton>Collect Egg Now</vButton>
+      <vButton>Leave Egg Hidden</vButton>
+    </span>
+  </vModal>
 </template>

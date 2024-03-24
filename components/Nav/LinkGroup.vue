@@ -1,12 +1,12 @@
 <script setup>
 import { NAVIAGTION_OPTIONS } from '~/globals/NavigationOptions.ts';
-import { randomTailwindTextColor } from '~/composables/util/randomTailwindTextColor.ts';
+import { randomTailwindTextColor } from '~/composables/colors/randomTailwindColors';
 const { signOut } = await useAuth();
 const handleSignOut = async () => await signOut();
 </script>
 <template>
   <div class="flex flex-col md:flex-row">
-    <NavLink v-for="option of NAVIAGTION_OPTIONS" :style="`hover:${randomTailwindTextColor()}`">
+    <NavLink v-for="option of NAVIAGTION_OPTIONS" :class="`hover:${randomTailwindTextColor()}`">
       <NuxtLink :to="option.route">{{ option.label }}</NuxtLink>
     </NavLink>
     <NavLink :style="'hover:text-orange-600'">
@@ -14,3 +14,4 @@ const handleSignOut = async () => await signOut();
     </NavLink>
   </div>
 </template>
+~/composables/colors/randomTailwindColors

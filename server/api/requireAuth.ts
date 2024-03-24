@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import { getServerSession } from '#auth';
 const prisma = new PrismaClient();
 
-export default function requireAuth(func: (event: any) => Promise<any>) {
+export function requireAuth(func: (event: any) => Promise<any>) {
   return async (event: any) => {
     const session = await getServerSession(event);
     if (!session?.user?.email) {
@@ -19,4 +19,13 @@ export default function requireAuth(func: (event: any) => Promise<any>) {
 
     return func(event);
   };
+}
+
+export async function getUser(event: any) {
+  const session = await getServerSession(event);
+  if (!session?.user?.email) {
+    return undefined;
+  } else {
+    return session.user.email;
+  }
 }

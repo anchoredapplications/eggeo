@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { randomHexColor } from '~/composables/util/randomHexColor.ts';
+import { randomHexColor } from '~/composables/colors/randomHexColor';
 
 const props = defineProps<{
   strokeWidth?: number;
@@ -60,3 +60,4 @@ if (props.color) {
     </svg>
   </ClientOnly>
 </template>
+~/composables/colors/randomHexColor

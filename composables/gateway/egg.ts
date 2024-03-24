@@ -20,3 +20,7 @@ export async function $getEggs(egg: Egg) {
 export async function useGetEggs() {
   return useGateway('/api/getEggs');
 }
+
+export async function useGetFoundEggs() {
+  return useGateway('/api/getFoundEggs');
+}
