@@ -5,6 +5,7 @@ const prisma = new PrismaClient();
 export default defineEventHandler(
   requireAuth(async (event: any) => {
     const username = await getUser(event);
+
     const data = await prisma.userEgg.aggregate({
       where: {
         username: username,
@@ -13,7 +14,6 @@ export default defineEventHandler(
         eggId: true,
       },
     });
-
     return data._count.eggId;
   }),
 );

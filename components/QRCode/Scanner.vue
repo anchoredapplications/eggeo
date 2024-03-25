@@ -11,7 +11,10 @@ const onDetect = (value: Array<any>) => {
 
 <template>
   <div class="w-full h-auto relative flex items-center justify-center">
-    <QrcodeStream @detect="onDetect" class="w-full max-w-screen-sm aspect-square shadow-xl border-2 border-black" />
+    <QrcodeStream
+      @detect="onDetect"
+      class="w-full max-w-screen-sm aspect-square shadow-xl border-2 border-black bg-white"
+    />
     <QRCodeOutline class="absolute top-0 w-full max-w-screen-sm aspect-square" />
   </div>
 </template>

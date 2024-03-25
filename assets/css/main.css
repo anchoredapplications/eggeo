@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  .bubble-svg {
+    font: bold 70px Century Gothic, Arial;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    justify-content: center;
+  }
+
+  .bubble-text {
+    fill: white;
+    stroke: black;
+    stroke-width: 2px;
+    stroke-linejoin: round;
+    animation: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    align-self: center;
+    justify-self: center;
+  }
+
+  .bubble-hover:hover {
+    animation: 1s pulsate infinite;
+  }
+
+  @keyframes pulsate {
+    50% {
+      stroke-width: 6px;
+    }
+  }
+}

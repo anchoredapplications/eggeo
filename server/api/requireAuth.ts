@@ -6,7 +6,7 @@ export function requireAuth(func: (event: any) => Promise<any>) {
   return async (event: any) => {
     const session = await getServerSession(event);
     if (!session?.user?.email) {
-      return { status: 'unauthenticated!' };
+      return { status: 'unauthenticated' };
     }
     const user = {
       username: session.user.email,

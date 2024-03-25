@@ -12,9 +12,9 @@ const hide = () => {
 </script>
 
 <template>
-  <main class="h-screen w-screen py-16">
-    <vTitle>Find</vTitle>
+  <div class="h-screen w-full py-16 flex flex-col items-center justify-center">
+    <vLabel styles="w-72">Hide</vLabel>
     <QRCodeScanner @onDetect="onDetect" />
-    <FindPopUp v-if="isShown" :uuid="uuid" :hide="hide" />
-  </main>
+    <HidePopUp v-if="isShown" :uuid="uuid" :hide="hide" />
+  </div>
 </template>

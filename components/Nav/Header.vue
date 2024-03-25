@@ -15,7 +15,7 @@ const signedIn = status.value === 'authenticated';
 </script>
 
 <template>
-  <nav class="shadow-xl border-b border-black bg-white">
+  <nav class="shadow-xl border-b border-black">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <!-- Logo -->
@@ -23,17 +23,13 @@ const signedIn = status.value === 'authenticated';
 
         <!-- Desktop Menu -->
         <div class="hidden md:block">
-          <NavLink v-if="!signedIn" :style="'hover:text-cyan-600 border-none'">
-            <button @click="handleSignIn">Sign In</button>
-          </NavLink>
+          <NavLink v-if="!signedIn" :onClick="handleSignIn"> Sign In </NavLink>
           <NavLinkGroup v-else />
         </div>
 
         <!-- Mobile Menu Button -->
         <div class="md:hidden">
-          <NavLink v-if="!signedIn" :style="'hover:text-cyan-600 border-none'">
-            <button @click="handleSignIn">Sign In</button>
-          </NavLink>
+          <NavLink v-if="!signedIn" :onClick="handleSignIn"> Sign In </NavLink>
           <button v-else @click.native="isOpen = !isOpen" :class="buttonClasses" aria-expanded="false">
             <span class="sr-only">Open main menu</span>
             <vHamburger v-if="!isOpen" />
@@ -47,7 +43,7 @@ const signedIn = status.value === 'authenticated';
     <div
       v-if="signedIn"
       :class="{ absolute: isOpen, hidden: !isOpen }"
-      class="bg-white border-1 border-black z-50 right-0 shadow-xl md:hidden"
+      class="bg-white border-1 border-black z-50 right-0 mt-[1px] shadow-xl md:hidden"
     >
       <NavLinkGroup />
     </div>

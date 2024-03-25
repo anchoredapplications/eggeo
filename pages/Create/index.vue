@@ -1,3 +1,0 @@
-<template>
-  <ViewCreateEgg />
-</template>

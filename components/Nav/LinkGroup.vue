@@ -6,13 +6,9 @@ const handleSignOut = async () => await signOut();
 </script>
 <template>
   <div class="flex flex-col md:flex-row">
-    <NuxtLink v-for="option of NAVIAGTION_OPTIONS" :to="option.route">
-      <NavLink :class="randomTailwindTextHoverColor()">
-        {{ option.label }}
-      </NavLink>
-    </NuxtLink>
-    <button class="w-full h-full" @click="handleSignOut">
-      <NavLink :style="'hover:text-orange-600'"> Sign Out </NavLink>
-    </button>
+    <NavLink v-for="option of NAVIAGTION_OPTIONS" :to="option.route">
+      {{ option.label }}
+    </NavLink>
+    <NavLink :onClick="handleSignOut"> Sign Out </NavLink>
   </div>
 </template>

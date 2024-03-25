@@ -31,6 +31,28 @@ const pastelTextHoverColors = [
   'hover:text-orange-600',
   'hover:text-red-600',
 ];
+const pastelFillHoverColors = [
+  'hover:fill-pink-600',
+  'hover:fill-purple-600',
+  'hover:fill-blue-600',
+  'hover:fill-cyan-600',
+  'hover:fill-green-600',
+  'hover:fill-lime-600',
+  'hover:fill-yellow-600',
+  'hover:fill-orange-600',
+  'hover:fill-red-600',
+];
+const pastelFillColors = [
+  'fill-pink-500',
+  'fill-purple-500',
+  'fill-blue-500',
+  'fill-cyan-500',
+  'fill-green-500',
+  'fill-lime-500',
+  'fill-yellow-500',
+  'fill-orange-500',
+  'fill-red-500',
+];
 const pastelBackgroundColors = [
   'bg-pink-400',
   'bg-purple-400',
@@ -47,6 +69,11 @@ export const randomTailwindTextColor = () => pastelTextColors[Math.floor(Math.ra
 
 export const randomTailwindTextHoverColor = () =>
   pastelTextHoverColors[Math.floor(Math.random() * pastelTextHoverColors.length)];
+
+export const randomTailwindFillHoverColor = () =>
+  pastelFillHoverColors[Math.floor(Math.random() * pastelFillHoverColors.length)];
+
+export const randomTailwindFillColor = () => pastelFillColors[Math.floor(Math.random() * pastelFillColors.length)];
 
 export const randomTailwindBackgroundColor = () =>
   pastelBackgroundColors[Math.floor(Math.random() * pastelBackgroundColors.length)];
