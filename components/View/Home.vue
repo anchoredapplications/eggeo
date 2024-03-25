@@ -1,8 +1,6 @@
-<script setup>
+<script setup lang="ts">
 import { useGetFoundEggs } from '~/composables/gateway/egg';
-const foundEggs = ref(0);
-const [response, error] = await useGetFoundEggs();
-foundEggs.value = response.data.value;
+const foundEggs = useState<number>('foundEggs');
 </script>
 
 <template>

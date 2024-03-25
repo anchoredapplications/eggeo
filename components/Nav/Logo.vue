@@ -1,5 +1,14 @@
+<script setup lang="ts">
+const foundEggs = useState('foundEggs');
+</script>
+
 <template>
-    <NuxtLink to="/" class="flex flex-shrink-0 uppercase font-bold items-center gap-2">
-        <EggImage class="block h-8 w-auto" :strokeWidth="10"/> Egg Finder
-    </NuxtLink>
+  <NuxtLink to="/">
+    <span class="flex items-center justify-center gap-1">
+      <EggImage class="block h-8 w-auto" :strokeWidth="10" :dimensions="{ width: 25 }" />
+      <vSubtitle class="text-3xl">
+        {{ foundEggs }}
+      </vSubtitle>
+    </span>
+  </NuxtLink>
 </template>

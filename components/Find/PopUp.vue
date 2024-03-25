@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { $findEgg } from '~/composables/gateway/egg';
+import { $findEgg, $collectEgg } from '~/composables/gateway/egg';
 const props = defineProps<{
   uuid?: string;
   hide?: () => void;
@@ -15,6 +15,10 @@ onMounted(async () => {
     refError.value = error;
   }
 });
+
+const deleteEgg = () => {
+  const [response, error] = $collectEgg({ id: uuid });
+};
 </script>
 
 <template>
@@ -23,8 +27,8 @@ onMounted(async () => {
     <vSubtitle v-else>Finding egg...</vSubtitle>
     <EggImage id="findpopup" :dimensions="{ width: 200, height: 200 }" />
     <span class="w-full flex justify-around pt-2">
-      <vButton>Collect Egg Now</vButton>
-      <vButton>Leave Egg Hidden</vButton>
+      <vButton @click="collectEgg">Collect Egg Now</vButton>
+      <vButton @click="hide">Leave Egg Hidden</vButton>
     </span>
   </vModal>
 </template>

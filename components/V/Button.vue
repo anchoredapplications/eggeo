@@ -1,5 +1,5 @@
 <script setup>
-import { randomTailwindBackgroundColor } from '~/composables/colors/randomTailwindColors';
+import { randomTailwindBackgroundColor } from '~/composables/colors/randomPastelColors';
 </script>
 <template>
   <button

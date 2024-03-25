@@ -24,3 +24,7 @@ export async function useGetEggs() {
 export async function useGetFoundEggs() {
   return useGateway('/api/getFoundEggs');
 }
+
+export async function $collectEgg(egg: Egg) {
+  return $gateway('/api/collectEgg', egg);
+}
