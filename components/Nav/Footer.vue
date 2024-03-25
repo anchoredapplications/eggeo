@@ -29,14 +29,14 @@ const options = NAVIAGTION_OPTIONS;
         <vLabel box="0 -10 40 55" class="w-4 min-h-16 py-4"> | </vLabel>
       </template>
       <template>
-        <button @click="handleSignOut">
-          <vLabel class="w-24 bubble-hover min-h-16 py-4"> Sign Out </vLabel>
+        <button @click="handleSignOut" class="flex items-center justify-center">
+          <vLabel class="w-24 bubble-hover"> Sign Out </vLabel>
         </button>
       </template>
     </template>
     <template v-else>
-      <button @click="handleSignIn">
-        <vLabel class="w-24 bubble-hover min-h-16 py-4"> Sign in </vLabel>
+      <button @click="handleSignIn" class="flex items-center justify-center">
+        <vLabel class="w-24 bubble-hover"> Sign in </vLabel>
       </button>
     </template>
   </footer>
