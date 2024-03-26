@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { randomTailwindFillColor } from '~/composables/colors/randomPastelColors';
 const props = defineProps<{
-  label: string | string[];
   to?: string;
   onClick?: () => void;
 }>();

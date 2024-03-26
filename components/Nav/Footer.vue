@@ -14,30 +14,28 @@ const handleSignIn = async () => await signIn();
 const handleSignOut = async () => await signOut();
 
 const signedIn = status.value === 'authenticated';
-const options = NAVIAGTION_OPTIONS;
+const options = NAVIAGTION_OPTIONS.reduce((a, b, c) => (c % 3 ? a[a.length - 1].push(b) : a.push([b]), a), []);
 </script>
 
 <template>
-  <footer class="shadow-t-xl border-t border-black bg-white flex items-center justify-center flex-wrap">
+  <footer class="shadow-t-xl border-t border-black bg-white flex flex-wrap items-center justify-center">
     <template v-if="signedIn">
-      <template v-for="(link, index) of options">
-        <NuxtLink :to="link.route">
-          <vLabel class="w-24 bubble-hover">
-            {{ link.label }}
-          </vLabel>
-        </NuxtLink>
-        <vLabel box="0 -10 40 55" class="w-4 min-h-16 py-4"> | </vLabel>
-      </template>
-      <template>
-        <button @click="handleSignOut" class="flex items-center justify-center">
-          <vLabel class="w-24 bubble-hover"> Sign Out </vLabel>
-        </button>
-      </template>
+      <span v-for="(chunk, i) of options" class="flex items-center justify-center py-2 sm:py-4">
+        <template v-for="(option, j) of chunk">
+          <NuxtLink :to="option.route">
+            <vLabel class="w-24 bubble-hover">
+              {{ option.label }}
+            </vLabel>
+          </NuxtLink>
+          <vLabel v-if="j < chunk.length - 1" box="0 -10 40 55" class="w-4"> | </vLabel>
+        </template>
+        <vLabel v-if="i < options.length - 1" box="0 -10 40 55" styles="w-4 hidden sm:block"> | </vLabel>
+      </span>
     </template>
     <template v-else>
-      <button @click="handleSignIn" class="flex items-center justify-center">
-        <vLabel class="w-24 bubble-hover"> Sign in </vLabel>
-      </button>
+      <NuxtLink :to="option.route">
+        <vLabel class="w-24 bubble-hover"> Sign In </vLabel>
+      </NuxtLink>
     </template>
   </footer>
 </template>

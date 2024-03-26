@@ -12,7 +12,7 @@ const isSmall = (digit: string) => ['I'].includes(digit);
         v-for="digit of getDigits(word)"
         :key="`${digit}-of-${word}`"
         :box="isSmall(digit) ? '0 -10 25 60' : '0 -10 50 60'"
-        :styles="[isSmall(digit) ? 'w-8' : 'w-16', 'h-min font-comic-sans bubble-hover']"
+        :styles="`${isSmall(digit) ? 'w-8' : 'w-16'} h-min font-comic-sans bubble-hover`"
       >
         {{ digit }}
       </vLabel>

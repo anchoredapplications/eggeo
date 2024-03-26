@@ -9,4 +9,5 @@ export const NAVIAGTION_OPTIONS: NavigationOptionType[] = [
   { label: 'Find', route: '/find' },
   { label: 'Codes', route: '/codes' },
   { label: 'Create', route: '/create' },
+  { label: 'Sign Out', route: '/signout' },
 ];

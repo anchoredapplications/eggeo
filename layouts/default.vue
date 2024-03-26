@@ -4,6 +4,6 @@
     <main class="relative bg-sky-200 h-full">
       <slot></slot>
     </main>
-    <NavFooter class="fixed bg-white w-full bottom-0 z-50" />
+    <NavFooter class="relative bg-a w-full bottom-0 z-50" />
   </div>
 </template>

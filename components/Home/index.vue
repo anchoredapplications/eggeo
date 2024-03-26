@@ -12,8 +12,10 @@ const foundEggs = useState('foundEggs');
         v-if="!!foundEggs || foundEggs === 0"
         class="absolute top-0 flex flex-col justify-center items-center w-full h-full mt-8"
       >
-        <vLabel class="w-full h-fit" color="fill-white" box="0 0 120 120">{{ 12 }}</vLabel>
+        <vLabel class="w-full h-fit" color="fill-white" box="0 0 120 120">{{ foundEggs }}</vLabel>
       </div>
     </div>
+
+    <vCloud v-for="n in 10" :key="`cloud-${n}`" />
   </main>
 </template>

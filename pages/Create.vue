@@ -31,7 +31,7 @@ const handleSubmit = async () => {
 </script>
 
 <template>
-  <main class="h-screen w-screen">
+  <main class="h-screen w-screen py-16">
     <form class="flex flex-col gap-4 w-full pt-8" @submit.prevent="handleSubmit">
       <input v-model="title" type="text" placeholder="Title" required class="p-2 border border-gray-300 rounded" />
       <textarea

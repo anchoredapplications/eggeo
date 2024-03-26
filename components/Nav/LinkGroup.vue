@@ -9,6 +9,5 @@ const handleSignOut = async () => await signOut();
     <NavLink v-for="option of NAVIAGTION_OPTIONS" :to="option.route">
       {{ option.label }}
     </NavLink>
-    <NavLink :onClick="handleSignOut"> Sign Out </NavLink>
   </div>
 </template>

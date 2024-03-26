@@ -15,6 +15,6 @@ const hide = () => {
   <div class="h-screen w-full py-16 flex flex-col items-center justify-center">
     <vLabel styles="w-72">Find</vLabel>
     <QRCodeScanner @onDetect="onDetect" />
-    <HidePopUp v-if="isShown" :uuid="uuid" :hide="hide" />
+    <FindPopUp v-if="isShown" :uuid="uuid" :hide="hide" />
   </div>
 </template>
