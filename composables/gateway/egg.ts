@@ -1,5 +1,6 @@
 import type { Egg } from '~/types/egg';
 import { $gateway, useGateway } from '.';
+import { useState } from '#imports';
 
 export async function $createEgg(egg: Egg) {
   return $gateway('/api/createEgg', egg);
@@ -22,7 +23,8 @@ export async function useGetEggs() {
 }
 
 export async function useGetFoundEggs() {
-  return useGateway('/api/getFoundEggs');
+  const state = useState<number>('foundEggs');
+  return await useGateway('/api/getFoundEggs', null, state);
 }
 
 export async function $collectEgg(egg: Egg) {

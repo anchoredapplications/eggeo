@@ -9,4 +9,5 @@ definePageMeta({
 
 <template>
   <Home />
+  <vClouds />
 </template>

@@ -34,7 +34,7 @@ watch(locatedAt, async (newVal, oldVal) => {
   if (oldVal === null || oldVal === undefined) {
     const [response, error] = await $getEggs({ coords: validate(coords) });
     if (response && !error) {
-      eggs.value = response.data.value;
+      eggs.value = response.value;
     }
   } else {
     center.value = validate(coords);

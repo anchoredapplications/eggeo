@@ -16,7 +16,7 @@ import type { Level, RenderAs } from 'qrcode.vue';
 
 const eggs = ref();
 const [response, error] = await useGetEggs();
-eggs.value = response.data.value;
+eggs.value = response.value;
 
 const level = ref<Level>('M');
 const renderAs = ref<RenderAs>('svg');

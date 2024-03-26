@@ -3,34 +3,46 @@
 @tailwind utilities;
 
 @layer base {
+  .bubble-group:hover {
+    .bubble-text {
+      animation: 1s pulsate infinite;
+    }
+    .bubble-icon {
+      animation: 1s pulsateLarge infinite;
+    }
+  }
   .bubble-svg {
     font: bold 70px Century Gothic, Arial;
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
-    justify-content: center;
+    animation: inherit;
   }
-
   .bubble-text {
     fill: white;
     stroke: black;
     stroke-width: 2px;
     stroke-linejoin: round;
     animation: inherit;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
-    justify-content: center;
-    display: flex;
-    align-self: center;
-    justify-self: center;
+    &:hover {
+      animation: 1s pulsate infinite;
+    }
+  }
+  .bubble-icon,
+  .bubble-icon-inf {
+    stroke: black;
+    stroke-width: 8px;
+    animation: inherit;
+    &:hover {
+      animation: 1s pulsateLarge infinite;
+    }
+  }
+  .bubble-icon-inf {
+    animation: 1s pulsateLarge infinite;
   }
 
-  .bubble-hover:hover {
-    animation: 1s pulsate infinite;
+  @keyframes pulsateLarge {
+    50% {
+      stroke-width: 16px;
+    }
   }
 
   @keyframes pulsate {
@@ -55,5 +67,6 @@
   /* Add animation to the cloud */
   .animate-cloud {
     animation: float 3s ease-in-out infinite;
+    overflow: hidden;
   }
 }

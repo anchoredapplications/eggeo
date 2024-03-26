@@ -3,7 +3,7 @@ import { useGetEggs } from '~/composables/gateway/egg';
 
 const eggs = ref([]);
 const [response, error] = await useGetEggs();
-eggs.value = response.data.value;
+eggs.value = response.value;
 </script>
 
 <template>

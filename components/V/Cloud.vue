@@ -115,7 +115,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="absolute animate-cloud" :style="`left: ${left}px; top: ${top}px; opacity: ${randomOpacity}`">
+  <div
+    id="cloud"
+    class="absolute animate-cloud overflow-hidden"
+    :style="`left: ${left}px; top: ${top}px; opacity: ${randomOpacity}`"
+  >
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60" width="400" height="200">
       <circle
         v-for="(circle, index) of randomCloudVariation"
@@ -128,3 +132,12 @@ onMounted(() => {
     </svg>
   </div>
 </template>
+
+<style>
+@media print {
+  #cloud {
+    visibility: hidden;
+    display: none;
+  }
+}
+</style>

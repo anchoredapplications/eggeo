@@ -4,7 +4,7 @@ import { useGetEggs } from '~/composables/gateway/egg';
 const props = defineProps(['uuid']);
 const eggs = ref([]);
 const [response, error] = await useGetEggs({ id: props.uuid });
-eggs.value = response.data.value;
+eggs.value = response.value;
 </script>
 
 <template>
