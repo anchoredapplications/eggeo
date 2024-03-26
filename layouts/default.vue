@@ -1,9 +1,9 @@
 <template>
-  <div class="max-w-full h-screen">
+  <div class="max-w-full overflow-hidden">
     <NavHeader class="fixed bg-white w-full top-0 z-50" />
-    <main class="relative bg-sky-200 h-full">
+    <main class="relative bg-sky-200 h-screen max-w-full overflow-hidden">
       <slot></slot>
     </main>
-    <NavFooter class="relative bg-a w-full bottom-0 z-50" />
+    <NavFooter class="relative bg-white w-full min-h-12 bottom-0 z-50" />
   </div>
 </template>

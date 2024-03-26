@@ -1,5 +1,5 @@
 <script setup>
-const { status, signIn } = await useAuth();
+const { status } = await useAuth();
 
 const isOpen = ref(false);
 
@@ -8,8 +8,6 @@ const buttonClasses = computed(() => {
     ? 'inline-flex items-center justify-center p-2 rounded-md hover:text-pink-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white'
     : 'inline-flex items-center justify-center p-2 rounded-md hover:text-pink-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white';
 });
-
-const handleSignIn = async () => await signIn();
 
 const signedIn = status.value === 'authenticated';
 </script>

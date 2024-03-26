@@ -61,7 +61,7 @@ const navLinkVariant = (variant: NavLinkVariant) => {
     case NavLinkVariant.HEADER:
       return {
         labelVariant: LabelVariant.HEADER,
-        linkStyling: 'w-fit border-black border-b border-l h-full md:border-none md:p-0',
+        linkStyling: 'w-fit wobble-group border-black border-b border-l h-full md:border-none md:p-0',
       };
     case NavLinkVariant.FOOTER:
       return {
