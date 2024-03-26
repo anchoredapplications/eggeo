@@ -4,15 +4,15 @@ const foundEggs = useState('foundEggs');
 
 <template>
   <main class="relative overflow-hidden flex flex-col items-center justify-center max-w-screen w-full h-full py-32">
-    <vLabel class="w-2/3 sm:w-1/3 md:w-1/4 lg:w-1/5">Jeremiah's</vLabel>
+    <vLabel class="w-full sm:w-1/3 md:w-1/4 lg:w-1/5">Jeremiah's</vLabel>
     <vDigitsLabel label="Egg Finder" />
-    <div class="relative max-w-screen-sm w-2/3 sm:w-1/3 md:w-1/4 lg:w-1/5">
-      <EggImage styles="bubble-icon" />
+    <div class="relative max-w-screen-sm w-full md:w-1/2 lg:w-1/3">
+      <EggImage styles="bubble-icon" :showBush="true" />
       <div
         v-if="!!foundEggs || foundEggs === 0"
         class="absolute top-0 flex flex-col justify-center items-center w-full h-full mt-8"
       >
-        <vLabel class="w-full h-fit" color="fill-white" box="0 0 120 120">{{ foundEggs }}</vLabel>
+        <vLabel class="w-full h-fit" color="fill-white" box="0 0 200 100">{{ foundEggs }}</vLabel>
       </div>
     </div>
   </main>

@@ -64,6 +64,55 @@
     }
   }
 
+  @keyframes wobble {
+    0% {
+      transform: rotate(-1deg);
+    }
+    50% {
+      transform: rotate(1deg);
+    }
+    100% {
+      transform: rotate(-1deg);
+    }
+  }
+  @keyframes wobble2 {
+    0% {
+      transform: rotate(-2deg);
+    }
+    50% {
+      transform: rotate(2deg);
+    }
+    100% {
+      transform: rotate(-2deg);
+    }
+  }
+  @keyframes wobble3 {
+    0% {
+      transform: rotate(-3deg);
+    }
+    50% {
+      transform: rotate(3deg);
+    }
+    100% {
+      transform: rotate(-3deg);
+    }
+  }
+
+  .wobble,
+  .wobble2,
+  .wobble3 {
+    transform-origin: center center; /* Sets the rotation point to the center of the SVG */
+  }
+  .wobble {
+    animation: wobble 5s ease-in-out infinite;
+  }
+  .wobble2 {
+    animation: wobble2 5s ease-in-out infinite;
+  }
+  .wobble3 {
+    animation: wobble3 5s ease-in-out infinite;
+  }
+
   /* Add animation to the cloud */
   .animate-cloud {
     animation: float 3s ease-in-out infinite;
