@@ -6,7 +6,7 @@ await useGetFoundEggs();
 </script>
 
 <template>
-  <NuxtLink to="/">
+  <NuxtLink to="/" ariaLabel="Home">
     <span class="flex items-center justify-center gap-1 bubble-group">
       <EggImage :strokeWidth="10" :dimensions="{ width: 25 }" styles="bubble-icon" />
       <span v-if="!!foundEggs || foundEggs === 0" class="flex">

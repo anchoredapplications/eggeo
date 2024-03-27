@@ -1,3 +1,3 @@
 <template>
-  <vCloud v-for="n in 10" :key="`cloud-${n}`" class="z-5" />
+  <vCloud v-for="n in 5" :key="`cloud-${n}`" class="z-5" />
 </template>

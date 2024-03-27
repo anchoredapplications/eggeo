@@ -27,8 +27,8 @@ const deleteEgg = () => {
     <vSubtitle v-else>Finding egg...</vSubtitle>
     <EggImage id="findpopup" :dimensions="{ width: 200, height: 200 }" />
     <span class="w-full flex justify-around pt-2">
-      <vButton @click="collectEgg">Collect Egg Now</vButton>
-      <vButton @click="hide">Leave Egg Hidden</vButton>
+      <vButton @click="collectEgg" label="Collect Egg Now" />
+      <vButton @click="hide" label="Leave Egg Hidden" />
     </span>
   </vModal>
 </template>

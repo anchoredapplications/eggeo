@@ -4,10 +4,12 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
+    "start": "nuxt start",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "prisma generate && nuxt prepare"
+    "postinstall": "prisma generate && nuxt prepare",
+    "generate-pwa-assets": "pwa-assets-generator --preset minimal-2023 public/favicon.svg"
   },
   "dependencies": {
     "@prisma/client": "^5.11.0",
@@ -26,8 +28,11 @@
     "vue3-google-map": "^0.20.0"
   },
   "devDependencies": {
+    "@nuxtjs/pwa": "^3.3.5",
     "@sidebase/nuxt-auth": "^0.7.0",
     "@sidebase/nuxt-session": "^0.2.8",
+    "@vite-pwa/assets-generator": "^0.2.4",
+    "@vite-pwa/nuxt": "^0.6.0",
     "@vueuse/core": "^10.9.0",
     "@vueuse/nuxt": "^10.9.0",
     "autoprefixer": "^10.4.18",

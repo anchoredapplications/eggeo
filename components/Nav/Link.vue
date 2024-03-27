@@ -17,41 +17,49 @@ const navLinkRoute = (variant: NavLinkRoute) => {
       return {
         to: '/',
         label: 'Egg Finder',
+        a11y: 'Home',
       };
     case NavLinkRoute.SIGNIN:
       return {
         onClick: signIn,
         label: 'Sign In',
+        a11y: 'Sign In to your Google account.',
       };
     case NavLinkRoute.SIGNOUT:
       return {
         onClick: signOut,
         label: 'Sign Out',
+        a11y: 'Sign out of your Google account.',
       };
     case NavLinkRoute.HIDE:
       return {
         to: '/hide',
         label: 'Hide',
+        a11y: 'Scan/Hide an easter egg.',
       };
     case NavLinkRoute.LOCATOR:
       return {
         to: '/locator',
         label: 'Map',
+        a11y: 'Geolocate all hidden eggs.',
       };
     case NavLinkRoute.FIND:
       return {
         to: '/find',
         label: 'Find',
+        a11y: 'Scan/Find an easter egg.',
       };
     case NavLinkRoute.CODES:
       return {
         to: '/codes',
         label: 'Print',
+        a11y: 'Print Egg QR Codes.',
       };
     case NavLinkRoute.CREATE:
       return {
         to: '/create',
         label: 'Create',
+        a11y: 'Create/Enter Easter eggs.',
       };
   }
 };
@@ -61,7 +69,7 @@ const navLinkVariant = (variant: NavLinkVariant) => {
     case NavLinkVariant.HEADER:
       return {
         labelVariant: LabelVariant.HEADER,
-        linkStyling: 'w-fit wobble-group border-black border-b border-l h-full md:border-none md:p-0',
+        linkStyling: 'w-fit wobble-group',
       };
     case NavLinkVariant.FOOTER:
       return {
@@ -81,7 +89,7 @@ const option =
 
 <template>
   <template v-if="option">
-    <NuxtLink v-if="option.to" :to="option.to" :class="option.linkStyling">
+    <NuxtLink v-if="option.to" :to="option.to" :class="option.linkStyling" :ariaLabel="option.a11y">
       <vLabel :variant="option.labelVariant">
         <template v-if="option.labelVariant !== LabelVariant.DYNAMIC">
           {{ option.label }}
@@ -91,7 +99,7 @@ const option =
         </template>
       </vLabel>
     </NuxtLink>
-    <button v-else @click="option.onClick" :class="option.linkStyling">
+    <button v-else @click="option.onClick" :class="option.linkStyling" :ariaLabel="option.a11y">
       <vLabel :variant="option.labelVariant">
         <template v-if="option.labelVariant !== LabelVariant.DYNAMIC">
           {{ option.label }}

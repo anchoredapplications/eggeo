@@ -5,7 +5,7 @@ const props = defineProps<{
   strokeWidth?: number;
   color?: string;
   id?: string;
-  dimensions?: Object;
+  dimensions?: any;
   styles?: string;
   showBush?: boolean;
 }>();
@@ -37,7 +37,8 @@ if (props.color) {
     :stroke-width="strokeWidth ?? 3"
     :width="dimensions?.width"
     :height="dimensions?.height"
-    :class="[styles, 'wobble-touch']"
+    :class="[styles]"
+    ariaLabel="A colorful egg."
   >
     <g transform="rotate(-90, 160, 160)" :class="styles">
       <!-- Define linear gradient with modified color stops -->

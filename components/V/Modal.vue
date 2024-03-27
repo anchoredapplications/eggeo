@@ -10,7 +10,7 @@ const onClose = () => {
       <div
         class="relative flex flex-col items-center justify-center w-full bg-white border-black border rounded shadow-2xl p-8"
       >
-        <button @click="onClose" class="absolute top-1 right-1 z-50">
+        <button @click="onClose" class="absolute top-1 right-1 z-50" aria-label="close">
           <vClose />
         </button>
         <slot></slot>
