@@ -8,10 +8,6 @@ const center = ref({ lat: 0, lng: 0 });
 const searchedCoords = ref();
 const searchedTime = ref();
 
-const validate = (c: unknown) => {
-  const coords = checkIsFloat(parseLatLng(c));
-  return coords;
-};
 const parseLatLng = (c: any) => {
   return c.value
     ? {
@@ -22,6 +18,10 @@ const parseLatLng = (c: any) => {
         lat: c.lat ?? c.latitude,
         lng: c.lng ?? c.longitude,
       };
+};
+const validate = (c: unknown) => {
+  const coords = checkIsFloat(parseLatLng(c));
+  return coords;
 };
 const checkIsFloat = (coords: { lat: number | string; lnt: number | string }) => {
   return {
@@ -49,7 +49,7 @@ const surpassedTimeThreshold = (searched: any, current: any) => {
 };
 
 const { coords, locatedAt } = useGeolocation();
-const [eggs, errors, refresh] = useGetEggsNearLocation({ coords: coords });
+const [eggs, errors, refresh] = useGetEggsNearLocation({ coords: center });
 
 const filtered = (listOfEggs: any) => {
   if (!listOfEggs || !Array.isArray(listOfEggs)) return [];
@@ -59,11 +59,11 @@ const filtered = (listOfEggs: any) => {
 watch(locatedAt, async (newValue, oldValue) => {
   center.value = validate(coords);
   if (
-    !oldValue ||
+    oldValue === null ||
     surpassedDistanceThreshold(searchedCoords, coords) ||
     surpassedTimeThreshold(searchedTime, newValue)
   ) {
-    refresh();
+    refresh({ coords: center });
   }
 });
 </script>

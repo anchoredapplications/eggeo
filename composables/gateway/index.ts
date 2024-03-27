@@ -40,7 +40,7 @@ export function useGateway(route: string, body?: any, state?: any) {
 
 export async function $gateway(route: string, body?: any, state?: any) {
   const opts = buildOpts(body) as any;
-  let data: any, error: any, handleRefresh: (() => void) | undefined;
+  let data: any, error: any;
 
   try {
     const response = await $fetch(route, opts);

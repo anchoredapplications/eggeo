@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const props = defineProps(['egg']);
-console.log(props.egg);
 </script>
 
 <template>

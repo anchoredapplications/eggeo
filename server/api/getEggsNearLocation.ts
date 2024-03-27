@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { getUser, requireAuth } from './requireAuth';
+import { requireAuth } from './requireAuth';
 const prisma = new PrismaClient();
 
 export default defineEventHandler(
