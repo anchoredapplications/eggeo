@@ -7,8 +7,12 @@ const emit = defineEmits(['onDetect']);
 
 const onDetect = (value: Array<any>) => {
   const uuid = value?.[0]?.rawValue;
-  if (isUUID(uuid)) emit('onDetect', uuid);
-  else if (parseEggFromLink(isUUID(uuid))) emit('onDetect', uuid);
+  const uuidFromLink = parseEggFromLink(uuid);
+  if (isUUID(uuid)) {
+    emit('onDetect', uuid);
+  } else if (isUUID(uuidFromLink)) {
+    emit('onDetect', uuidFromLink);
+  }
 };
 </script>
 

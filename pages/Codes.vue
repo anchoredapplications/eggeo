@@ -7,14 +7,12 @@
         class="m-4 mt-0 p-4 border-black border-2 shadow-xl flex flex-col items-center justify-center"
         :style="`background-color: ${egg.color ?? '#ffffff'}`"
       >
-        <span class="bg-white p-1 border-black border">
-          <qrcode-vue
-            :class="`border-2 border-black`"
-            :value="parseLinkFromEgg(egg.id)"
-            :level="level"
-            :render-as="renderAs"
-          />
-        </span>
+        <qrcode-vue
+          :class="`border-2 border-black`"
+          :value="parseLinkFromEgg(egg.id)"
+          :level="level"
+          :render-as="renderAs"
+        />
       </span>
     </div>
   </div>
