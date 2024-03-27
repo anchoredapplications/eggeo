@@ -4,7 +4,6 @@ const isShown = ref<boolean>();
 const onDetect = (val: string) => {
   uuid.value = val;
   isShown.value = true;
-  console.log('here');
 };
 const hide = () => {
   uuid.value = undefined;
