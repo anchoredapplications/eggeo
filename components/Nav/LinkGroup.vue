@@ -1,6 +1,5 @@
 <script setup>
 import { useRoutes } from '~/globals/Routes.ts';
-import { randomTailwindTextHoverColor } from '~/composables/colors/randomPastelColors';
 const routes = useRoutes();
 </script>
 <template>

@@ -21,13 +21,13 @@ const signedIn = status.value === 'authenticated';
 
         <!-- Desktop Menu -->
         <div class="hidden md:block">
-          <NavLink v-if="!signedIn" route="SIGNIN" variant="HEADER" />
+          <NavLink v-if="!signedIn" route="SIGNIN" variant="HEADER" class="border-none" />
           <NavLinkGroup v-else />
         </div>
 
         <!-- Mobile Menu Button -->
         <div class="md:hidden">
-          <NavLink v-if="!signedIn" route="SIGNIN" variant="HEADER" />
+          <NavLink v-if="!signedIn" route="SIGNIN" variant="HEADER" class="border-none" />
           <button v-else @click.native="isOpen = !isOpen" :class="buttonClasses" aria-expanded="false">
             <span class="sr-only">Open main menu</span>
             <vHamburger v-if="!isOpen" />

@@ -21,13 +21,13 @@ const navLinkRoute = (variant: NavLinkRoute) => {
       };
     case NavLinkRoute.SIGNIN:
       return {
-        onClick: signIn,
+        to: '/signin',
         label: 'Sign In',
         a11y: 'Sign In to your Google account.',
       };
     case NavLinkRoute.SIGNOUT:
       return {
-        onClick: signOut,
+        to: '/signout',
         label: 'Sign Out',
         a11y: 'Sign out of your Google account.',
       };
@@ -69,7 +69,7 @@ const navLinkVariant = (variant: NavLinkVariant) => {
     case NavLinkVariant.HEADER:
       return {
         labelVariant: LabelVariant.HEADER,
-        linkStyling: 'w-fit wobble-group',
+        linkStyling: 'w-fit border-black border-b border-l h-full md:border-none md:p-0',
       };
     case NavLinkVariant.FOOTER:
       return {
@@ -88,25 +88,14 @@ const option =
 </script>
 
 <template>
-  <template v-if="option">
-    <NuxtLink v-if="option.to" :to="option.to" :class="option.linkStyling" :ariaLabel="option.a11y">
-      <vLabel :variant="option.labelVariant">
-        <template v-if="option.labelVariant !== LabelVariant.DYNAMIC">
-          {{ option.label }}
-        </template>
-        <template v-else>
-          <slot></slot>
-        </template>
-      </vLabel>
-    </NuxtLink>
-    <button v-else @click="option.onClick" :class="option.linkStyling" :ariaLabel="option.a11y">
-      <vLabel :variant="option.labelVariant">
-        <template v-if="option.labelVariant !== LabelVariant.DYNAMIC">
-          {{ option.label }}
-        </template>
-        <template v-else>
-          <slot></slot>
-        </template>
-      </vLabel></button
-  ></template>
+  <NuxtLink v-if="option && option.to" :to="option.to" :class="option.linkStyling" :ariaLabel="option.a11y">
+    <vLabel :variant="option.labelVariant">
+      <template v-if="option.labelVariant !== LabelVariant.DYNAMIC">
+        {{ option.label }}
+      </template>
+      <template v-else>
+        <slot></slot>
+      </template>
+    </vLabel>
+  </NuxtLink>
 </template>
