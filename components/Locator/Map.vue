@@ -43,7 +43,7 @@ watch(locatedAt, async (newVal, oldVal) => {
 </script>
 
 <template>
-  <GoogleMap class="h-full w-full" :apiKey="config.public.mapsApiKey" :center="center" :zoom="17">
+  <GoogleMap v-if="eggs.length" class="h-full w-full" :apiKey="config.public.mapsApiKey" :center="center" :zoom="17">
     <CustomMarker key="current-user" :options="{ position: center, anchorPoint: 'CENTER' }">
       <span key="current-user-marker" class="flex items-center justify-center flex-col">
         <vUser :dimensions="{ width: 25 }" />
