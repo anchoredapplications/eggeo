@@ -15,7 +15,7 @@ model Egg {
   title       String?
   color       String?
   username    String?
-  hiddenBy    User?     @relation(fields: [username], references: [username])
+  createdBy   User?     @relation(fields: [username], references: [username])
   foundBy     UserEgg[]
   isCollected Boolean? @default(false)
 }

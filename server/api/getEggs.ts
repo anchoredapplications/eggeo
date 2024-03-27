@@ -1,9 +1,10 @@
 import { PrismaClient } from '@prisma/client';
-import { requireAuth } from './requireAuth';
+import { getUser, requireAuth } from './requireAuth';
 const prisma = new PrismaClient();
 
 export default defineEventHandler(
   requireAuth(async (event) => {
+    const username = await getUser(event);
     const egg = await readBody(event);
     if (!!egg && !!egg.coords && !!egg.coords.lat && !!egg.coords.lng) {
       return await prisma.egg.findMany({
@@ -29,6 +30,9 @@ export default defineEventHandler(
       });
     } else {
       return await prisma.egg.findMany({
+        where: {
+          username: username,
+        },
         include: {
           coords: {},
         },

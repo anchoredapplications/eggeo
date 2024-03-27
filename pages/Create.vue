@@ -58,8 +58,9 @@ const handleSubmit = async () => {
       <button
         :disabled="isDisabled"
         type="submit"
-        :class="{ 'bg-blue-100': isDisabled }"
-        class="w-full shadow-xl p-2 mx-4 bg-blue-500 text-white p-4 rounded border border-black my-[1px] hover:border-2 hover:my-0 active:bg-blue-400"
+        :class="`w-full shadow-xl p-2 mx-4 bg-blue-500 text-white p-4 rounded border border-black my-[1px] hover:border-2 hover:my-0 active:bg-blue-400 ${
+          isDisabled ? 'opacity-50' : ''
+        }`"
         aria-label="create-button"
       >
         Submit
