@@ -30,20 +30,19 @@ const eggs = ref();
 const config = useRuntimeConfig();
 const center = ref({ lat: 0, lng: 0 });
 
-watch(locatedAt, async (newVal, oldVal) => {
-  if (oldVal === null || oldVal === undefined) {
-    const [response, error] = await $getEggs({ coords: validate(coords) });
-    if (response && !error) {
-      eggs.value = response.value;
-    }
-  } else {
-    center.value = validate(coords);
+callOnce(async () => {
+  const [response, error] = await $getEggs({ coords: validate(coords) });
+  if (response && !error) {
+    eggs.value = response.value;
   }
+})
+watch(locatedAt, async () => {
+  center.value = validate(coords);
 });
 </script>
 
 <template>
-  <GoogleMap v-if="eggs.length" class="h-full w-full" :apiKey="config.public.mapsApiKey" :center="center" :zoom="17">
+  <GoogleMap class="h-full w-full" :apiKey="config.public.mapsApiKey" :center="center" :zoom="17">
     <CustomMarker key="current-user" :options="{ position: center, anchorPoint: 'CENTER' }">
       <span key="current-user-marker" class="flex items-center justify-center flex-col">
         <vUser :dimensions="{ width: 25 }" />
