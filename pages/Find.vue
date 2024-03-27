@@ -4,6 +4,7 @@ const isShown = ref<boolean>();
 const onDetect = (val: string) => {
   uuid.value = val;
   isShown.value = true;
+  console.log('here');
 };
 const hide = () => {
   uuid.value = undefined;
@@ -13,8 +14,8 @@ const hide = () => {
 
 <template>
   <div class="h-screen w-full py-16 flex flex-col items-center justify-center">
-    <vLabel styles="w-72">Find</vLabel>
-    <QRCodeScanner @onDetect="onDetect" />
+    <vLabel v-if="!isShown" styles="w-72">Find</vLabel>
+    <QRCodeScanner v-if="!isShown" @onDetect="onDetect" />
     <FindPopUp v-if="isShown" :uuid="uuid" :hide="hide" />
   </div>
 </template>

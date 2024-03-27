@@ -7,6 +7,7 @@ const props = defineProps<{
   styles?: string;
   box?: string;
   color?: string;
+  hideHover?: boolean;
 }>();
 
 const labelVariant = (variant: LabelVariant) => {
@@ -39,7 +40,7 @@ const option = labelVariant(props.variant);
       y="51%"
       dominant-baseline="middle"
       text-anchor="middle"
-      :class="[color ?? randomTailwindFillColor(), 'bubble-text']"
+      :class="[color ?? randomTailwindFillColor(), hideHover ? '' : 'bubble-text-hover', 'bubble-text']"
     >
       <slot></slot>
     </text>

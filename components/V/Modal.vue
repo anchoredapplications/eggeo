@@ -5,7 +5,7 @@ const onClose = () => {
 };
 </script>
 <template>
-  <main class="absolute top-0 left-0 w-full h-screen flex items-center justify-center">
+  <main class="absolute top-0 left-0 w-full h-screen flex items-center justify-center bg-black/40 z-50">
     <div class="w-full max-w-screen-sm h-1/2 px-8 sm:px-16">
       <div
         class="relative flex flex-col items-center justify-center w-full bg-white border-black border rounded shadow-2xl p-8"

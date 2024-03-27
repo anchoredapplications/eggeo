@@ -16,6 +16,9 @@ export default defineEventHandler(
       },
       create: egg,
       update: egg,
+      include: {
+        Egg: {},
+      },
     });
   }),
 );

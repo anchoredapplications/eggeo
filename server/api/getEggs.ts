@@ -12,6 +12,7 @@ export default defineEventHandler(
             lat: { lte: egg.coords.lat + 0.1, gte: egg.coords.lat - 0.1 },
             lng: { lte: egg.coords.lng + 0.1, gte: egg.coords.lng - 0.1 },
           },
+          isCollected: false,
         },
         include: {
           coords: {},

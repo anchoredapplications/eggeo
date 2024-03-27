@@ -22,6 +22,8 @@
     stroke-width: 2px;
     stroke-linejoin: round;
     animation: inherit;
+  }
+  .bubble-text-hover {
     &:hover {
       animation: 1s pulsate infinite;
     }

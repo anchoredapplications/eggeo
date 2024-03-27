@@ -17,6 +17,7 @@ model Egg {
   username    String?
   hiddenBy    User?     @relation(fields: [username], references: [username])
   foundBy     UserEgg[]
+  isCollected Boolean? @default(false)
 }
 
 model UserEgg {

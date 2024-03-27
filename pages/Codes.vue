@@ -14,10 +14,7 @@ import { useGetEggs } from '~/composables/gateway/egg';
 import QrcodeVue from 'qrcode.vue';
 import type { Level, RenderAs } from 'qrcode.vue';
 
-const eggs = ref();
-const [response, error] = await useGetEggs();
-eggs.value = response.value;
-
+const [eggs, error] = useGetEggs();
 const level = ref<Level>('M');
 const renderAs = ref<RenderAs>('svg');
 </script>

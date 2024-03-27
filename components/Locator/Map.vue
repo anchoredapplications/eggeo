@@ -1,14 +1,18 @@
 <script setup lang="ts">
 import { GoogleMap, CustomMarker } from 'vue3-google-map';
-import { $getEggs } from '~/composables/gateway/egg';
+import { useGetEggs } from '~/composables/gateway/egg';
 import { useGeolocation } from '@vueuse/core';
 
-const { coords, locatedAt } = useGeolocation();
+const config = useRuntimeConfig();
+const center = ref({ lat: 0, lng: 0 });
+const searchedCoords = ref();
+const searchedTime = ref();
+
 const validate = (c: unknown) => {
   const coords = checkIsFloat(parseLatLng(c));
   return coords;
 };
-const parseLatLng = (c) => {
+const parseLatLng = (c: any) => {
   return c.value
     ? {
         lat: c.value.lat ?? c.value.latitude,
@@ -25,32 +29,15 @@ const checkIsFloat = (coords: { lat: number | string; lnt: number | string }) =>
     lng: parseFloat(coords.lng),
   };
 };
-
-const eggs = ref([]);
-const config = useRuntimeConfig();
-const center = ref({ lat: 0, lng: 0 });
-const searchedCoords = ref();
-const searchedTime = ref();
-
-const loadEggs = async () => {
-  const [response, error] = await $getEggs({ coords: validate(coords) });
-  if (response && !error) {
-    eggs.value = response.value;
-    searchedCoords.value = validate(coords);
-    searchedTime.value = locatedAt;
-  }
-};
-
 const surpassedDistanceThreshold = (searched: any, current: any) => {
-  if (!searched || !searched.value) return true;
-  if (!current || !current.value) return true;
+  if (!searched || !searched?.value) return true;
+  if (!current || !current?.value) return true;
 
-  const s = searched.value;
-  const c = current.value;
+  const s = searched?.value;
+  const c = current?.value;
 
   return Math.abs(s.lat - c.lat) > 0.1 || Math.abs(s.lng - c.lng) > 0.1;
 };
-
 const surpassedTimeThreshold = (searched: any, current: any) => {
   if (!searched || !searched.value) return true;
   if (!current || !current.value) return true;
@@ -61,14 +48,20 @@ const surpassedTimeThreshold = (searched: any, current: any) => {
   return Math.abs(s - c) > 60000;
 };
 
+const { coords, locatedAt } = useGeolocation();
+const [eggs, errors, refresh] = useGetEggs({ coords: coords });
+
+const filtered = (listOfEggs: any) =>
+  listOfEggs?.filter((egg: any) => !!egg.coords && !!egg.coords.lat && !!egg.coords.lng);
+
 watch(locatedAt, async (newValue) => {
   center.value = validate(coords);
   if (
-    !eggs.value.length ||
-    surpassedDistanceThreshold(searchedCoords, center) ||
+    !eggs.length ||
+    surpassedDistanceThreshold(searchedCoords, coords) ||
     surpassedTimeThreshold(searchedTime, newValue)
   ) {
-    loadEggs();
+    refresh();
   }
 });
 </script>
@@ -81,7 +74,7 @@ watch(locatedAt, async (newValue) => {
       </span>
     </CustomMarker>
     <CustomMarker
-      v-for="egg in eggs"
+      v-for="egg in filtered(eggs)"
       :key="egg.id"
       :options="{
         position: validate(egg.coords),

@@ -1,7 +1,9 @@
 export type Egg = {
-    id?: string,
-    title?: string, 
-    description?: string,
-    coords?: Location,
-    user?: Location,
-}
+  id?: string;
+  title?: string;
+  description?: string;
+  color?: string;
+  coords?: Location;
+  user?: Location;
+  isCollected?: boolean;
+};

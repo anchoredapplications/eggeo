@@ -11,13 +11,16 @@ export function requireAuth(func: (event: any) => Promise<any>) {
     const user = {
       username: session.user.email,
     };
-    await prisma.user.upsert({
-      where: user,
-      update: user,
-      create: user,
-    });
-
-    return func(event);
+    try {
+      await prisma.user.upsert({
+        where: user,
+        update: user,
+        create: user,
+      });
+      return func(event);
+    } catch {
+      return { status: 'unknown' };
+    }
   };
 }
 

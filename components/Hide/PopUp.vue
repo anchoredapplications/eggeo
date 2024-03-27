@@ -1,33 +1,19 @@
 <script setup lang="ts">
-import { $hideEgg } from '~/composables/gateway/egg';
+import { useHideEgg } from '~/composables/gateway/egg';
 const props = defineProps<{
   uuid?: string;
   hide?: () => void;
+  location: any;
 }>();
-const wasHidden = ref<boolean>(false);
-const refError = ref<string>();
-
-onMounted(async () => {
-  navigator?.geolocation.getCurrentPosition(async (position) => {
-    const coords = {
-      lat: position.coords.latitude,
-      lng: position.coords.longitude,
-    };
-
-    const [response, error] = await $hideEgg({ coords: coords, id: props.uuid });
-
-    if (response && !error) {
-      wasHidden.value = true;
-    } else if (error) {
-      refError.value = error;
-    }
-  });
-});
+const [hiddenEgg, errorHidding] = useHideEgg({ coords: props.location, id: props.uuid });
 </script>
 <template>
   <vModal @close="hide">
-    <vSubtitle v-if="wasHidden">Egg Hidden!</vSubtitle>
-    <vSubtitle v-else>Hidding egg...!</vSubtitle>
+    <vLabel box="0 0 550 100" styles="w-32">
+      <template v-if="!!errorHidding">Error: {{ errorHidding }}</template>
+      <template v-else-if="!!hiddenEgg">Egg Hidden!</template>
+      <template v-else>Hidding egg...</template>
+    </vLabel>
     <EggImage id="hidepopup" :dimensions="{ width: 200 }" />
   </vModal>
 </template>

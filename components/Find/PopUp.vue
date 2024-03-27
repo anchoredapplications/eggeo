@@ -1,34 +1,46 @@
 <script setup lang="ts">
-import { $findEgg, $collectEgg } from '~/composables/gateway/egg';
+import { useFindEgg, $findEgg, $collectEgg } from '~/composables/gateway/egg';
 const props = defineProps<{
   uuid?: string;
   hide?: () => void;
 }>();
-const wasHidden = ref<boolean>(false);
-const refError = ref<string>();
+const [foundEgg, errorFinding] = useFindEgg({ id: props.uuid });
 
-onMounted(async () => {
-  const [response, error] = await $findEgg({ username: user.email, id: uuid });
-  if (response && !error) {
-    wasFound.value = true;
-  } else if (error) {
-    refError.value = error;
-  }
-});
+const wasCollected = ref<boolean>();
+const isCollecting = ref<boolean>();
+const error = ref<string>();
 
-const deleteEgg = () => {
-  const [response, error] = $collectEgg({ id: uuid });
+const collectEgg = async () => {
+  isCollecting.value = true;
+  const [data, errorCollecting] = await $collectEgg({ id: props.uuid });
+  if (data && !errorCollecting) wasCollected.value = true;
+  else error.value = errorCollecting;
 };
+
+const disabled = computed(() => errorFinding || wasCollected.value || !foundEgg.value || isCollecting.value);
 </script>
 
 <template>
   <vModal @close="hide">
-    <vSubtitle v-if="wasHidden">Egg found!</vSubtitle>
-    <vSubtitle v-else>Finding egg...</vSubtitle>
-    <EggImage id="findpopup" :dimensions="{ width: 200, height: 200 }" />
+    <vLabel box="0 0 550 100" styles="w-32">
+      <template v-if="!!error">Error: {{ error }}</template>
+      <template v-else-if="!!wasCollected">Egg Collected!</template>
+      <template v-else-if="!!isCollecting">Collecting egg...</template>
+      <template v-else-if="!!foundEgg">Egg found!</template>
+      <template v-else>Finding egg...</template>
+    </vLabel>
+    <span class="flex flex-col items-center justify-center">
+      <p v-if="foundEgg">
+        {{ foundEgg.Egg.title }}
+      </p>
+      <p>
+        {{ foundEgg.Egg.description }}
+      </p>
+    </span>
+    <EggImage id="findpopup" :dimensions="{ width: 200, height: 200 }" :color="foundEgg?.Egg?.color" />
     <span class="w-full flex justify-around pt-2">
-      <vButton @click="collectEgg" label="Collect Egg Now" />
-      <vButton @click="hide" label="Leave Egg Hidden" />
+      <vButton :disabled="disabled" @click="collectEgg" label="Collect Egg Now" />
+      <vButton :disabled="disabled" @click="hide" label="Leave Egg Hidden" />
     </span>
   </vModal>
 </template>
