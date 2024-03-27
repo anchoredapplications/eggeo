@@ -13,7 +13,7 @@ function buildOpts(body?: any) {
 }
 
 function isAuthed(payload: any) {
-  return payload?.status !== 'unauthenticated';
+  return payload?.status !== 'unauthenticated' && payload?.status !== 'unknown';
 }
 
 export function useGateway(route: string, body?: any, state?: any) {
