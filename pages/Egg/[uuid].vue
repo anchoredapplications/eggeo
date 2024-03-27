@@ -1,10 +1,7 @@
 <script setup>
-import { useGetEggs } from '~/composables/gateway/egg';
-
-const props = defineProps(['uuid']);
-const eggs = ref([]);
-const [response, error] = await useGetEggs({ id: props.uuid });
-eggs.value = response.value;
+import { useGetEgg } from '~/composables/gateway/egg';
+const route = useRoute();
+const [egg, error] = useGetEgg({ id: route.params.uuid });
 </script>
 
 <template>

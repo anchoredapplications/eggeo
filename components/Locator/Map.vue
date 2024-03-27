@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { GoogleMap, CustomMarker } from 'vue3-google-map';
-import { useGetEggs } from '~/composables/gateway/egg';
+import { useGetEggsNearLocation } from '~/composables/gateway/egg';
 import { useGeolocation } from '@vueuse/core';
 
 const config = useRuntimeConfig();
@@ -49,11 +49,13 @@ const surpassedTimeThreshold = (searched: any, current: any) => {
 };
 
 const { coords, locatedAt } = useGeolocation();
-const [eggs, errors, refresh] = useGetEggs({ coords: coords });
+const [eggs, errors, refresh] = useGetEggsNearLocation({ coords: coords });
 
-const filtered = (listOfEggs: any) =>
-  listOfEggs?.filter((egg: any) => !!egg.coords && !!egg.coords.lat && !!egg.coords.lng);
+const filtered = (listOfEggs: any) => {
+  if (!listOfEggs || !Array.isArray(listOfEggs)) return [];
 
+  return listOfEggs.filter((egg: any) => !!egg.coords && !!egg.coords.lat && !!egg.coords.lng);
+};
 watch(locatedAt, async (newValue, oldValue) => {
   center.value = validate(coords);
   if (

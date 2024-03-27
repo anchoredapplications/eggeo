@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import isUUID from 'validator/lib/isUUID';
 import { QrcodeStream } from 'vue-qrcode-reader';
+import { parseEggFromLink } from '~/composables/parseEggFromLink';
+
 const emit = defineEmits(['onDetect']);
 
 const onDetect = (value: Array<any>) => {
   const uuid = value?.[0]?.rawValue;
   if (isUUID(uuid)) emit('onDetect', uuid);
+  else if (parseEggFromLink(isUUID(uuid))) emit('onDetect', uuid);
 };
 </script>
 

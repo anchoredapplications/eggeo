@@ -15,12 +15,15 @@ export async function $findEgg(egg?: Egg) {
 export async function $collectEgg(egg?: Egg) {
   return $gateway('/api/collectEgg', egg);
 }
-export async function $getEggs(egg?: Egg) {
-  return useGateway('/api/getEggs', egg);
-}
 // Synchronous
-export function useGetEggs(egg?: Egg) {
-  return useGateway('/api/getEggs', egg);
+export function useGetEgg(egg?: Egg) {
+  return useGateway('/api/getEgg', egg);
+}
+export function useGetEggsNearLocation(egg?: Egg) {
+  return useGateway('/api/getEggsNearLocation', egg);
+}
+export function useGetUserEggs(egg?: Egg) {
+  return useGateway('/api/getUserEggs', egg);
 }
 export function useFindEgg(egg?: Egg) {
   return useGateway('/api/findEgg', egg);
