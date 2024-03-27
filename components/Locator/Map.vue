@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { GoogleMap, CustomMarker } from 'vue3-google-map';
-import { useGetEggs } from '~/composables/gateway/egg';
+import { $getEggs } from '~/composables/gateway/egg';
 import { useGeolocation } from '@vueuse/core';
 
 const { coords, locatedAt } = useGeolocation();
@@ -29,17 +29,47 @@ const checkIsFloat = (coords: { lat: number | string; lnt: number | string }) =>
 const eggs = ref([]);
 const config = useRuntimeConfig();
 const center = ref({ lat: 0, lng: 0 });
+const searchedCoords = ref();
+const searchedTime = ref();
 
 const loadEggs = async () => {
-  const [response, error] = await useGetEggs({ coords: validate(coords) });
+  const [response, error] = await $getEggs({ coords: validate(coords) });
   if (response && !error) {
     eggs.value = response.value;
+    searchedCoords.value = validate(coords);
+    searchedTime.value = locatedAt;
   }
 };
 
-loadEggs();
-watch(locatedAt, async () => {
+const surpassedDistanceThreshold = (searched: any, current: any) => {
+  if (!searched || !searched.value) return true;
+  if (!current || !current.value) return true;
+
+  const s = searched.value;
+  const c = current.value;
+
+  return Math.abs(s.lat - c.lat) > 0.1 || Math.abs(s.lng - c.lng) > 0.1;
+};
+
+const surpassedTimeThreshold = (searched: any, current: any) => {
+  if (!searched || !searched.value) return true;
+  if (!current || !current.value) return true;
+
+  const s = searched.value;
+  const c = current.value;
+
+  return Math.abs(s - c) > 60000;
+};
+
+watch(locatedAt, async (newValue) => {
   center.value = validate(coords);
+  if (
+    !eggs.value.length ||
+    surpassedDistanceThreshold(searchedCoords, center) ||
+    surpassedTimeThreshold(searchedTime, newValue)
+  ) {
+    loadEggs();
+  }
 });
 </script>
 

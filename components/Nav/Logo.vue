@@ -2,7 +2,9 @@
 import { useGetFoundEggs } from '~/composables/gateway/egg';
 const foundEggs = useState<number>('foundEggs');
 
-await useGetFoundEggs();
+const [_r, _e, refresh] = await useGetFoundEggs();
+
+useIntervalFn(refresh, 1000 * 60 * 2);
 </script>
 
 <template>

@@ -2,34 +2,37 @@ export type GatewayFunction = () => Promise<any>;
 
 async function gateway(func: any, route: string, body?: any, state?: any) {
   const headers = useRequestHeaders(['cookie']) as HeadersInit;
-  let response, data, error;
+  const opts = {
+    method: 'post',
+    headers: headers,
+    body: body ?? '',
+  };
+  let responseData: any, error: any, handleRefresh: (() => any) | undefined;
+
   try {
-    response = await func(route, {
-      method: 'post',
-      headers: headers,
-      body: body ?? '',
-    });
-  } catch (error: unknown) {
-    error = error;
+    var { data, refresh } = await func(route, opts);
+    handleRefresh = () => {
+      refresh(opts);
+    };
+  } catch (e: unknown) {
+    error = e;
   }
 
   if (!error) {
-    if (response.data.value?.status === 'unauthenticated') {
-      data = null;
-    } else {
-      data = response.data;
+    if (data.value?.status !== 'unauthenticated') {
+      responseData = data;
     }
 
-    if (state && data) {
+    if (state && responseData) {
       try {
-        state.value = data.value;
-      } catch (err: unknown) {
-        error = err;
+        state.value = responseData.value;
+      } catch (e: unknown) {
+        error = e;
       }
     }
   }
 
-  return [data, error];
+  return [data, error, handleRefresh];
 }
 
 export async function useGateway(route: string, body?: any, state?: any) {

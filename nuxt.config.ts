@@ -7,8 +7,8 @@ export default defineNuxtConfig({
       name: 'Egg Finder',
       short_name: 'EggFindr',
       description: "Jeremiah's Egg Finder -- Geolocation client for easter eggs.",
-      theme_color: '#AAFFAA',
-      background_color: '#AAFFAA',
+      theme_color: '#FFFFFF',
+      background_color: '#FFFFFF',
       icons: [
         {
           src: '/pwa/pwa-64x64.png',

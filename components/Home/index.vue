@@ -12,7 +12,7 @@ const foundEggs = useState('foundEggs');
         v-if="!!foundEggs || foundEggs === 0"
         class="absolute top-0 flex flex-col justify-center items-center w-full h-full mt-8"
       >
-        <vLabel class="w-full h-fit" color="fill-white" box="0 0 200 100">{{ foundEggs }}</vLabel>
+        <vLabel class="w-full h-fit" color="fill-white" box="0 0 260 130">{{ foundEggs }}</vLabel>
       </div>
     </div>
   </main>
