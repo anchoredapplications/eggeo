@@ -1,4 +1,6 @@
 <script setup lang="ts">
-const { signOut } = await useAuth();
-await signOut({callbackUrl: "/"});
+const { signOut } = useAuth();
+onMounted(async () => {
+  await signOut({ callbackUrl: '/' });
+});
 </script>

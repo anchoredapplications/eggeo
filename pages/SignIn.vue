@@ -1,4 +1,13 @@
 <script setup lang="ts">
-const { signIn } = await useAuth();
-await signIn('google', { callbackUrl: '/dashboard' });
+definePageMeta({
+  auth: {
+    unauthenticatedOnly: true,
+    navigateAuthenticatedTo: '/dashboard',
+  },
+});
+
+const { signIn } = useAuth();
+onMounted(async () => {
+  await signIn('google', { callbackUrl: '/dashboard' });
+});
 </script>

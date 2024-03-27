@@ -18,8 +18,8 @@ export async function $getEggs(egg: Egg) {
   return useGateway('/api/getEggs', egg);
 }
 
-export async function useGetEggs() {
-  return useGateway('/api/getEggs');
+export async function useGetEggs(egg: Egg) {
+  return useGateway('/api/getEggs', egg);
 }
 
 export async function useGetFoundEggs() {

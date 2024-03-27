@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { GoogleMap, Marker, CustomMarker } from 'vue3-google-map';
-import { $getEggs } from '~/composables/gateway/egg';
+import { GoogleMap, CustomMarker } from 'vue3-google-map';
+import { useGetEggs } from '~/composables/gateway/egg';
 import { useGeolocation } from '@vueuse/core';
 
-const { coords, locatedAt, resume, pause } = useGeolocation();
+const { coords, locatedAt } = useGeolocation();
 const validate = (c: unknown) => {
   const coords = checkIsFloat(parseLatLng(c));
   return coords;
@@ -26,16 +26,18 @@ const checkIsFloat = (coords: { lat: number | string; lnt: number | string }) =>
   };
 };
 
-const eggs = ref();
+const eggs = ref([]);
 const config = useRuntimeConfig();
 const center = ref({ lat: 0, lng: 0 });
 
-callOnce(async () => {
-  const [response, error] = await $getEggs({ coords: validate(coords) });
+const loadEggs = async () => {
+  const [response, error] = await useGetEggs({ coords: validate(coords) });
   if (response && !error) {
     eggs.value = response.value;
   }
-})
+};
+
+loadEggs();
 watch(locatedAt, async () => {
   center.value = validate(coords);
 });

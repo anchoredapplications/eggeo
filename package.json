@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "egg-finder",
   "private": true,
   "type": "module",
   "scripts": {
@@ -28,9 +28,7 @@
     "vue3-google-map": "^0.20.0"
   },
   "devDependencies": {
-    "@nuxtjs/pwa": "^3.3.5",
     "@sidebase/nuxt-auth": "^0.7.0",
-    "@sidebase/nuxt-session": "^0.2.8",
     "@vite-pwa/assets-generator": "^0.2.4",
     "@vite-pwa/nuxt": "^0.6.0",
     "@vueuse/core": "^10.9.0",
