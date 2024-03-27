@@ -18,10 +18,18 @@ const collectEgg = async () => {
 };
 
 const disabled = computed(() => errorFinding || wasCollected.value || !foundEgg.value || isCollecting.value);
+
+const handleClose = () => {
+  foundEgg.value = undefined;
+  error.value = undefined;
+  wasCollected.value = undefined;
+  isCollecting.value = undefined;
+  if (props.hide) props.hide();
+};
 </script>
 
 <template>
-  <vModal @close="hide">
+  <vModal @close="handleClose">
     <vLabel box="0 0 550 100" styles="w-32">
       <template v-if="!!error">Error: {{ error }}</template>
       <template v-else-if="!!wasCollected">Egg Collected!</template>
@@ -29,8 +37,8 @@ const disabled = computed(() => errorFinding || wasCollected.value || !foundEgg.
       <template v-else-if="!!foundEgg">Egg found!</template>
       <template v-else>Finding egg...</template>
     </vLabel>
-    <span class="flex flex-col items-center justify-center">
-      <p v-if="foundEgg">
+    <span v-if="foundEgg" class="flex flex-col items-center justify-center">
+      <p>
         {{ foundEgg.Egg.title }}
       </p>
       <p>
@@ -38,9 +46,9 @@ const disabled = computed(() => errorFinding || wasCollected.value || !foundEgg.
       </p>
     </span>
     <EggImage id="findpopup" :dimensions="{ width: 200, height: 200 }" :color="foundEgg?.Egg?.color" />
-    <span class="w-full flex justify-around pt-2">
+    <span class="w-full flex flex-wrap justify-around pt-2">
       <vButton :disabled="disabled" @click="collectEgg" label="Collect Egg Now" />
-      <vButton :disabled="disabled" @click="hide" label="Leave Egg Hidden" />
+      <vButton :disabled="disabled" @click="handleClose" label="Leave Egg Hidden" />
     </span>
   </vModal>
 </template>

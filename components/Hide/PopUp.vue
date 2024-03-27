@@ -5,12 +5,20 @@ const props = defineProps<{
   hide?: () => void;
   location: any;
 }>();
+const error = ref<string>();
 const [hiddenEgg, errorHidding] = useHideEgg({ coords: props.location, id: props.uuid });
+error.value = errorHidding;
+
+const handleClose = () => {
+  hiddenEgg.value = undefined;
+  error.value = undefined;
+  if (props.hide) props.hide();
+};
 </script>
 <template>
-  <vModal @close="hide">
+  <vModal @close="handleClose">
     <vLabel box="0 0 550 100" styles="w-32">
-      <template v-if="!!errorHidding">Error: {{ errorHidding }}</template>
+      <template v-if="!!error">Error: {{ error }}</template>
       <template v-else-if="!!hiddenEgg">Egg Hidden!</template>
       <template v-else>Hidding egg...</template>
     </vLabel>
