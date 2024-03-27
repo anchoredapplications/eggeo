@@ -54,10 +54,10 @@ const [eggs, errors, refresh] = useGetEggs({ coords: coords });
 const filtered = (listOfEggs: any) =>
   listOfEggs?.filter((egg: any) => !!egg.coords && !!egg.coords.lat && !!egg.coords.lng);
 
-watch(locatedAt, async (newValue) => {
+watch(locatedAt, async (newValue, oldValue) => {
   center.value = validate(coords);
   if (
-    !eggs.length ||
+    !oldValue ||
     surpassedDistanceThreshold(searchedCoords, coords) ||
     surpassedTimeThreshold(searchedTime, newValue)
   ) {
