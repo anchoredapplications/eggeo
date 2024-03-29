@@ -13,7 +13,13 @@ const props = defineProps(['egg']);
         <EggImage :id="egg.id" v-else :color="egg.color" />
       </span>
       <br />
-      <vSubtitle class="mb-8">{{ egg.description }}</vSubtitle>
+      <vSubtitle>
+        {{ egg.description }} 
+        {{ egg.points === 1 ? `+${egg.points}pt.` : `+${egg.points}pts.` }}
+      </vSubtitle>
+      <p class="mb-8">
+        {{ egg.description }}
+      </p>
     </div>
   </div>
 </template>
