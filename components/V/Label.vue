@@ -14,7 +14,7 @@ const labelVariant = (variant: LabelVariant) => {
   switch (variant) {
     case LabelVariant.HEADER:
       return {
-        style: 'w-28 py-2 md:max-w-28 md:w-fit md:min-w-24',
+        style: 'w-24 py-2 md:max-w-28 md:w-fit md:min-w-24',
       };
     case LabelVariant.FOOTER:
       return {

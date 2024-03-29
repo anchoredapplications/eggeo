@@ -4,9 +4,9 @@ export default defineNuxtConfig({
   modules: ['@sidebase/nuxt-auth', '@vueuse/nuxt', '@vite-pwa/nuxt'],
   pwa: {
     manifest: {
-      name: 'Egg Finder',
-      short_name: 'EggFindr',
-      description: "Jeremiah's Egg Finder -- Geolocation client for easter eggs.",
+      name: "Jeremiah's Eggeo",
+      short_name: 'Eggeo',
+      description: "Jeremiah's Eggeo -- A geolocation client for eggs.",
       theme_color: '#FFFFFF',
       background_color: '#FFFFFF',
       icons: [
