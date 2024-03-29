@@ -6,4 +6,5 @@ export type Egg = {
   coords?: Location;
   user?: Location;
   isCollected?: boolean;
+  points?: number;
 };

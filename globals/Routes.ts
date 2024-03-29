@@ -1,10 +1,15 @@
 import { NavLinkRoute } from '~/types/global.ts';
 
-export const useRoutes: () => NavigationOptionType[] = () => [
-  NavLinkRoute.HIDE,
-  NavLinkRoute.LOCATOR,
+export const useRoutes: () => NavLinkRoute[] = () => [
+  NavLinkRoute.LEADERBOARD,
   NavLinkRoute.FIND,
+  NavLinkRoute.LOCATOR,
+  NavLinkRoute.USER,
+];
+
+export const useSetupRoutes: () => NavLinkRoute[] = () => [
   NavLinkRoute.CODES,
   NavLinkRoute.CREATE,
+  NavLinkRoute.HIDE,
   NavLinkRoute.SIGNOUT,
 ];

@@ -61,6 +61,18 @@ const navLinkRoute = (variant: NavLinkRoute) => {
         label: 'Create',
         a11y: 'Create/Enter Easter eggs.',
       };
+    case NavLinkRoute.LEADERBOARD:
+      return {
+        to: '/leaderboard',
+        label: 'Ranking',
+        a11y: 'Go to the leaderboard.',
+      };
+    case NavLinkRoute.USER:
+      return {
+        to: '/panel',
+        label: 'User',
+        a11y: 'Go to the user panel.',
+      };
   }
 };
 
@@ -76,9 +88,10 @@ const navLinkVariant = (variant: NavLinkVariant) => {
         labelVariant: LabelVariant.FOOTER,
         linkStyling: 'w-fit p-0',
       };
-    case NavLinkVariant.DYNAMIC:
+    case NavLinkVariant.PANEL:
       return {
-        labelVariant: LabelVariant.DYNAMIC,
+        labelVariant: LabelVariant.PANEL,
+        linkStyling: 'w-fit px-4',
       };
   }
 };
@@ -90,12 +103,7 @@ const option =
 <template>
   <NuxtLink v-if="option && option.to" :to="option.to" :class="option.linkStyling" :ariaLabel="option.a11y">
     <vLabel :variant="option.labelVariant">
-      <template v-if="option.labelVariant !== LabelVariant.DYNAMIC">
-        {{ option.label }}
-      </template>
-      <template v-else>
-        <slot></slot>
-      </template>
+      {{ option.label }}
     </vLabel>
   </NuxtLink>
 </template>

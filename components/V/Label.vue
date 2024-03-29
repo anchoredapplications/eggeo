@@ -20,6 +20,11 @@ const labelVariant = (variant: LabelVariant) => {
       return {
         style: 'w-24',
       };
+    case LabelVariant.PANEL:
+      return {
+        style: 'w-36',
+        box: '0 0 400 200',
+      };
     default:
       return {
         style: '',
@@ -31,7 +36,7 @@ const option = labelVariant(props.variant);
 </script>
 <template>
   <svg
-    :viewBox="box ?? '0 0 380 100'"
+    :viewBox="box ?? option.box ?? '0 0 380 100'"
     preserveAspectRatio="xMinYMin meet"
     :class="[styles, option.style, 'bubble-svg']"
   >

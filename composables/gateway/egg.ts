@@ -3,8 +3,8 @@ import { $gateway, useGateway } from '.';
 import { useState } from '#imports';
 
 // Asynchronous
-export async function $createEgg(egg?: Egg) {
-  return $gateway('/api/createEgg', egg);
+export async function $createEgg(numberOfEggs?: number, egg?: Egg) {
+  return $gateway('/api/createEgg', { count: numberOfEggs, ...egg });
 }
 export async function $hideEgg(egg?: Egg) {
   return $gateway('/api/hideEgg', egg);
@@ -16,6 +16,9 @@ export async function $collectEgg(egg?: Egg) {
   return $gateway('/api/collectEgg', egg);
 }
 // Synchronous
+export function useGetLeaderboard(egg?: Egg) {
+  return useGateway('/api/getLeaderboard');
+}
 export function useGetEgg(egg?: Egg) {
   return useGateway('/api/getEgg', egg);
 }

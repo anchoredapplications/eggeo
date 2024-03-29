@@ -15,6 +15,7 @@ model Egg {
   title       String?
   color       String?
   username    String?
+  points      Int?      @default(1)
   createdBy   User?     @relation(fields: [username], references: [username])
   foundBy     UserEgg[]
   isCollected Boolean? @default(false)
@@ -31,6 +32,7 @@ model UserEgg {
 
 model User {
   username   String    @id @default(uuid())
+  name       String?
   foundEggs  UserEgg[]
   hiddenEggs Egg[]
 }

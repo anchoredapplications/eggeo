@@ -6,14 +6,20 @@ export default defineEventHandler(
   requireAuth(async (event: any) => {
     const username = await getUser(event);
 
-    const data = await prisma.userEgg.aggregate({
+    const data = await prisma.userEgg.findMany({
       where: {
         username: username,
       },
-      _count: {
-        eggId: true,
+      select: {
+        Egg: {
+          select: {
+            points: true,
+          },
+        },
       },
     });
-    return data._count.eggId;
+
+    const sum = data.map((e) => e.Egg.points ?? 1).reduce((a, b) => a + b, 0);
+    return sum;
   }),
 );

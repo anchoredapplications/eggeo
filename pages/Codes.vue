@@ -10,10 +10,9 @@ const renderAs = ref<RenderAs>('svg');
 </script>
 
 <template>
-  <div class="flex flex-wrap gap-8 my-16 items-center justify-center">
-    <div v-for="egg in eggs" :key="egg.id" class="w-1/3 flex flex-col items-center justify-center gap-4">
+  <div class="h-fit flex flex-wrap gap-4 my-24 items-center justify-center">
+    <div v-for="egg in eggs" :key="egg.id" class="w-64 flex flex-col items-center justify-center gap-4">
       <vSubtitle class="w-32">{{ egg.title }}</vSubtitle>
-      <vSubtitle class="w-32">{{ egg.id }}</vSubtitle>
       <span
         class="m-4 mt-0 p-4 border-black border-2 shadow-xl flex flex-col items-center justify-center"
         :style="`background-color: ${egg.color ?? '#ffffff'}`"
