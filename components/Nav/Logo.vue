@@ -15,7 +15,7 @@ useIntervalFn(refresh, 1000 * 60 * 2);
         <vLabel v-if="foundEggs < 99" box="0 -5 80 60" styles="w-8 ">{{ foundEggs }}</vLabel>
         <vLabel v-else box="0 -5 120 60" styles="w-8 ">99+</vLabel>
       </span>
-      <vLabel v-else variant="HEADER">Eggeo</vLabel>
+      <vLabel v-else box="20 -10 300 200" variant="HEADER">Eggeo</vLabel>
     </span>
   </NuxtLink>
 </template>

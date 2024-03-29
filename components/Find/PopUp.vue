@@ -7,11 +7,13 @@ const props = defineProps<{
 }>();
 const [foundEgg, errorFinding] = useFindEgg({ id: props.uuid });
 const foundEggs = useState<number>('foundEggs');
-foundEggs.value = foundEggs.value + foundEgg?.Egg?.points ?? 0;
-
 const wasCollected = ref<boolean>();
 const isCollecting = ref<boolean>();
 const error = ref<string>();
+
+watch(()=>foundEgg.value, (value) => {
+  foundEggs.value = foundEggs.value + value.Egg?.points ?? 0;
+})
 
 const collectEgg = async () => {
   isCollecting.value = true;
