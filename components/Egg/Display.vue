@@ -34,6 +34,7 @@ const handleDelete = async () => {
       >
         <button
           @click="handleDelete"
+          id="delete"
           :class="`flex rounded-full w-full h-full align-center items-center ${active ? 'opacity-70' : ''} ${color}`"
         >
           <vClose class="w-full" />
@@ -45,3 +46,11 @@ const handleDelete = async () => {
     </span>
   </div>
 </template>
+
+<style>
+@media print {
+  #delete {
+    display: none;
+  }
+}
+</style>
