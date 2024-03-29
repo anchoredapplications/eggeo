@@ -39,11 +39,10 @@ const handleSubmit = async () => {
 </script>
 
 <template>
-  <div class="h-screen w-screen justify-center items-center flex flex-col my-16 pb-16">
+  <div class="h-screen max-w-screen justify-center items-center flex flex-col my-16 pb-16">
     <vLabel box="0 0 900 100" class="w-full p-4 sm:w-1/2">Create an Egg</vLabel>
     <form class="w-full max-w-screen-md justify-center items-center flex flex-col gap-4" @submit.prevent="handleSubmit">
-      <span class="w-full flex flex-col items-center align-center">
-        <vLabel box="0 0 1200 100" class="w-3/4 sm:w-1/2">Title:</vLabel>
+      <FormField label="Title">
         <input
           v-model="title"
           type="text"
@@ -51,53 +50,51 @@ const handleSubmit = async () => {
           required
           class="w-full shadow-xl p-2 mx-4 border border-gray-300 rounded"
         />
-      </span>
-      <span class="w-full flex flex-col items-center align-center">
-        <vLabel box="0 0 1200 100" class="w-3/4 sm:w-1/2">Description:</vLabel>
+      </FormField>
+      <FormField label="Description">
         <textarea
           v-model="description"
           placeholder="Enter description..."
           required
           class="w-full shadow-xl p-2 mx-4 border border-gray-300 rounded"
         ></textarea>
-      </span>
-      <span class="w-full flex flex-col items-center align-center">
-        <vLabel box="0 0 1200 100" class="w-3/4 sm:w-1/2">Point per egg:</vLabel>
+      </FormField>
+      <FormField label="Points per egg">
         <input
           v-model="points"
           type="number"
           placeholder="Point per egg"
           class="w-full shadow-xl p-2 mx-4 border border-gray-300 rounded"
         />
-      </span>
-      <span class="w-full flex flex-col items-center align-center">
-        <vLabel box="0 0 1200 100" class="w-3/4 sm:w-1/2">Color:</vLabel>
+      </FormField>
+      <FormField label="Color">
         <input
           v-model="color"
           type="color"
           required
           class="w-full shadow-xl rounded h-16 border border-gray-300 rounded"
         />
-      </span>
-      <span class="w-full flex flex-col items-center align-center">
-        <vLabel box="0 0 1200 100" class="w-3/4 sm:w-1/2">Number of Eggs:</vLabel>
+      </FormField>
+      <FormField label="Number of Eggs">
         <input
           v-model="numberOfEggs"
           type="number"
           required
           class="w-full shadow-xl p-2 mx-4 border border-gray-300 rounded"
         />
-      </span>
-      <button
-        :disabled="isDisabled"
-        type="submit"
-        :class="`w-full shadow-xl p-2 mx-4 bg-blue-500 text-white p-4 rounded border border-black my-[1px] hover:border-2 hover:my-0 active:bg-blue-400 ${
-          isDisabled ? 'opacity-50' : ''
-        }`"
-        aria-label="create-button"
-      >
-        Submit
-      </button>
+      </FormField>
+      <FormField>
+        <button
+          :disabled="isDisabled"
+          type="submit"
+          :class="`w-full shadow-xl p-2 m-4 bg-blue-500 text-white p-4 rounded border border-black my-[1px] hover:border-2 hover:my-0 active:bg-blue-400 ${
+            isDisabled ? 'opacity-50' : ''
+          }`"
+          aria-label="create-button"
+        >
+          Submit
+        </button>
+      </FormField>
       <i v-if="refError" class="w-full p-2 px-4 text-red-1200">{{ refError }}</i>
     </form>
   </div>

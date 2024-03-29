@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-screen flex align-center justify-center py-32">
+  <div class="w-full h-screen max-w-screen flex align-center justify-center py-32 px-4">
     <div class="w-full max-w-screen-sm flex flex-col items-center justify-center gap-2">
       <vLabel box="0 0 600 100" class="w-3/4 sm:w-1/2">LEADERBOARD</vLabel>
       <div

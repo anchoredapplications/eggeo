@@ -21,6 +21,12 @@ export default defineEventHandler(
             },
           },
         },
+        orderBy: {
+          foundEggs: {
+            _count: 'desc',
+          },
+        },
+        take: 100,
       });
       const result = data
         .map((datum) => ({
