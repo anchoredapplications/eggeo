@@ -29,12 +29,12 @@ const handleDelete = async () => {
       class="relative m-4 mt-0 p-4 border-black border-2 shadow-xl flex flex-col items-center justify-center"
       :style="`background-color: ${egg.color ?? '#ffffff'}`"
     >
-      <span
+    <span
+        id="delete"
         :class="`flex align-center items-center absolute w-8 h-8 border border-black shadow-xl aspect-square rounded-full fixed -top-4 -right-4 bg-white`"
       >
         <button
           @click="handleDelete"
-          id="delete"
           :class="`flex rounded-full w-full h-full align-center items-center ${active ? 'opacity-70' : ''} ${color}`"
         >
           <vClose class="w-full" />
