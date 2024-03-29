@@ -11,5 +11,6 @@ export const useSetupRoutes: () => NavLinkRoute[] = () => [
   NavLinkRoute.CODES,
   NavLinkRoute.CREATE,
   NavLinkRoute.HIDE,
+  NavLinkRoute.SCORE,
   NavLinkRoute.SIGNOUT,
 ];

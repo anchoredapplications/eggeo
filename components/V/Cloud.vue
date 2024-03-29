@@ -102,7 +102,7 @@ const cloudVariations = [
 const randomCloudVariation = cloudVariations[Math.floor(Math.random() * cloudVariations.length)];
 
 onMounted(() => {
-  top.value = Math.random() * window.innerHeight - 100;
+  top.value = Math.random() * window.innerHeight - 200;
   left.value = Math.random() * window.innerWidth - 200;
   // Animate cloud to move across the screen
   setInterval(() => {

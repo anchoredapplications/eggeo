@@ -73,6 +73,12 @@ const navLinkRoute = (variant: NavLinkRoute) => {
         label: 'User',
         a11y: 'Go to the user panel.',
       };
+    case NavLinkRoute.SCORE:
+      return {
+        to: '/score',
+        label: 'Reset Score',
+        a11y: 'Reset the user score.',
+      };
   }
 };
 

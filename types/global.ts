@@ -23,4 +23,5 @@ export enum NavLinkRoute {
   SIGNOUT = 'SIGNOUT',
   LEADERBOARD = 'LEADERBOARD',
   USER = 'USER',
+  SCORE = 'SCORE',
 }

@@ -3,6 +3,12 @@ import { $gateway, useGateway } from '.';
 import { useState } from '#imports';
 
 // Asynchronous
+export async function $deleteScore() {
+  return $gateway('/api/deleteScore');
+}
+export async function $deleteEgg(egg?: Egg) {
+  return $gateway('/api/deleteEgg', egg);
+}
 export async function $createEgg(numberOfEggs?: number, egg?: Egg) {
   return $gateway('/api/createEgg', { count: numberOfEggs, ...egg });
 }

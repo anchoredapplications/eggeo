@@ -2,7 +2,7 @@
 import { useGetFoundEggs } from '~/composables/gateway/egg';
 const foundEggs = useState<number>('foundEggs');
 
-const [_r, _e, refresh] = await useGetFoundEggs();
+const [_r, _e, refresh] = useGetFoundEggs();
 
 useIntervalFn(refresh, 1000 * 60 * 2);
 </script>
@@ -15,7 +15,7 @@ useIntervalFn(refresh, 1000 * 60 * 2);
         <vLabel v-if="foundEggs < 99" box="0 -5 80 60" styles="w-8 ">{{ foundEggs }}</vLabel>
         <vLabel v-else box="0 -5 120 60" styles="w-8 ">99+</vLabel>
       </span>
-      <vLabel v-else variant="HEADER">Egg Finder</vLabel>
+      <vLabel v-else variant="HEADER">Eggeo</vLabel>
     </span>
   </NuxtLink>
 </template>

@@ -18,7 +18,6 @@ export default defineEventHandler(
         },
       },
     });
-
     const sum = data.map((e) => e.Egg.points ?? 1).reduce((a, b) => a + b, 0);
     return sum;
   }),

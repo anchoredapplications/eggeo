@@ -5,18 +5,19 @@ const prisma = new PrismaClient();
 export default defineEventHandler(
   requireAuth(async (event) => {
     const username = await getUser(event);
+    if (!username) return false;
+
+    const response = [];
     try {
-      return await prisma.egg.findMany({
+      const userEgg = await prisma.userEgg.deleteMany({
         where: {
           username: username,
-          isCollected: false,
-        },
-        include: {
-          coords: {},
         },
       });
-    } catch (error: unknown) {
-      console.error(error);
+      response.push(userEgg);
+    } catch (deleteError: any) {
+      console.error(deleteError);
     }
+    return response;
   }),
 );

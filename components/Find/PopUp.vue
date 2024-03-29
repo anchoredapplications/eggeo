@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import { useFindEgg, $findEgg, $collectEgg } from '~/composables/gateway/egg';
+import { useFindEgg, $collectEgg } from '~/composables/gateway/egg';
+import { useGetFoundEggs } from '~/composables/gateway/egg';
 const props = defineProps<{
   uuid?: string;
   hide?: () => void;
 }>();
 const [foundEgg, errorFinding] = useFindEgg({ id: props.uuid });
+const foundEggs = useState<number>('foundEggs');
+foundEggs.value = foundEggs.value + foundEgg?.Egg?.points ?? 0;
 
 const wasCollected = ref<boolean>();
 const isCollecting = ref<boolean>();
@@ -39,7 +42,8 @@ const handleClose = () => {
     </vLabel>
     <span v-if="foundEgg" class="flex flex-col items-center justify-center">
       <p>
-        {{ foundEgg.Egg.title }}
+        {{ foundEgg.Egg.title }} |
+        {{ foundEgg.Egg.points === 1 ? `+${foundEgg.Egg.points}pt.` : `+${foundEgg.Egg.points}pts.` }}
       </p>
       <p>
         {{ foundEgg.Egg.description }}
