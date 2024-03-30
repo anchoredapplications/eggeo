@@ -8,7 +8,6 @@ const numberOfEggs = defineModel<number>('numberOfEggs');
 
 const refError = ref<string>();
 const isDisabled = ref(false);
-color.value = '#FFFF00';
 points.value = 1;
 numberOfEggs.value = 1;
 
@@ -68,12 +67,7 @@ const handleSubmit = async () => {
         />
       </FormField>
       <FormField label="Color">
-        <input
-          v-model="color"
-          type="color"
-          required
-          class="w-full shadow-xl rounded h-16 border border-gray-300 rounded"
-        />
+        <input v-model="color" type="color" class="w-full shadow-xl rounded h-16 border border-gray-300 rounded" />
       </FormField>
       <FormField label="Number of Eggs">
         <input

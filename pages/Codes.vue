@@ -29,7 +29,7 @@ const handlePrint = () => {
   }
   #item-pane {
     padding: 0;
-    gap: 0;
+    gap: 2rem;
     margin: 0;
     break-inside: avoid-page;
     height: fit-content;
