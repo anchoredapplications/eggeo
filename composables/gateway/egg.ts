@@ -21,6 +21,9 @@ export async function $findEgg(egg?: Egg) {
 export async function $collectEgg(egg?: Egg) {
   return $gateway('/api/collectEgg', egg);
 }
+export async function $getEggsNearLocation(egg?: Egg) {
+  return $gateway('/api/getEggsNearLocation', egg);
+}
 // Synchronous
 export function useGetLeaderboard(egg?: Egg) {
   return useGateway('/api/getLeaderboard');

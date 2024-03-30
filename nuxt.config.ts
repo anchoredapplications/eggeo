@@ -77,6 +77,7 @@ export default defineNuxtConfig({
     public: {
       url: '',
       mapsApiKey: '',
+      maxEggsPerUser: '',
     },
   },
   auth: {
