@@ -5,36 +5,35 @@ const prisma = new PrismaClient();
 export default defineEventHandler(
   requireAuth(async (event) => {
     try {
-      const data = await prisma.user.findMany({
-        where: {
-          username: {
-            not: {
-              in: ['jdgage@protonmail.com'],
-            },
-          },
-        },
+      const data = await prisma.userEgg.findMany({
         select: {
-          name: true,
-          _count: {
+          User: true,
+          Egg: {
             select: {
-              foundEggs: true,
+              points: true,
             },
           },
         },
-        orderBy: {
-          foundEggs: {
-            _count: 'desc',
-          },
-        },
-        take: 100,
       });
-      const result = data
+
+      const namesAndPoints = data
         .map((datum) => ({
-          name: datum.name,
-          points: datum._count.foundEggs,
+          name: datum.User.name ?? '',
+          points: datum.Egg.points ?? 1,
         }))
         .sort((a, b) => b.points - a.points);
-      return result;
+
+      const groupedItems = namesAndPoints.reduce((acc: any, currentItem: any) => {
+        const { name, points } = currentItem;
+        if (!acc[name]) {
+          acc[name] = { name, points: points };
+        } else {
+          acc[name].points += points;
+        }
+        return acc;
+      }, {});
+
+      return Object.values(groupedItems).sort((a: any, b: any) => b.points - a.points);
     } catch (error: unknown) {
       console.error(error);
     }
