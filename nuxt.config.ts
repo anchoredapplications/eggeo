@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@sidebase/nuxt-auth', '@vueuse/nuxt', '@vite-pwa/nuxt'],
+
   pwa: {
     manifest: {
       name: "Jeremiah's Eggeo",
@@ -61,7 +62,9 @@ export default defineNuxtConfig({
       type: 'module',
     },
   },
+
   css: ['~/assets/css/main.css'],
+
   postcss: {
     plugins: {
       'tailwindcss/nesting': {},
@@ -70,6 +73,7 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+
   runtimeConfig: {
     googleClientSecret: '',
     googleClientId: '',
@@ -80,10 +84,13 @@ export default defineNuxtConfig({
       maxEggsPerUser: '',
     },
   },
+
   auth: {
     provider: {
       type: 'authjs',
     },
     globalAppMiddleware: true,
   },
+
+  compatibilityDate: '2025-04-19',
 });
